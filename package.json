@@ -4,6 +4,11 @@
     "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js",
     "author": "Miaowing <i@zfeng.net>",
     "license": "MIT",
+    "private": false,
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
     "scripts": {
         "coverage": "nyc report --reporter=text-lcov | coveralls",
         "test": "nyc --require ts-node/register mocha packages/**/*.spec.ts --reporter spec --require 'node_modules/reflect-metadata/Reflect.js'",
@@ -32,6 +37,7 @@
         "@types/chai": "4.1.7",
         "@types/chai-as-promised": "7.1.0",
         "@types/express": "^4.16.1",
+        "@types/got": "^9.6.12",
         "@types/handlebars": "^4.1.0",
         "@types/http-proxy": "^1.16.2",
         "@types/ioredis": "^4.0.10",
@@ -120,5 +126,6 @@
     },
     "dependencies": {
         "@kubernetes/client-node": "^0.11.0"
-    }
+    },
+    "main": "gulpfile.js"
 }
