@@ -1,7 +1,7 @@
 import { ClientOptions } from './interfaces/client-options.interface';
 import { ClientGrpcProxy } from '@nestjs/microservices/client';
-import { ILoadbalance, IServer } from '@nestcloud/common';
-import { GrpcDelegate } from '@nestcloud/loadbalance';
+import { ILoadbalance, IServer } from '@nestcloud2/common';
+import { GrpcDelegate } from '@nestcloud2/loadbalance';
 
 export class GrpcClient {
     private readonly options: ClientOptions;
@@ -36,11 +36,9 @@ export class GrpcClient {
         return grpcService;
     }
 
-    private scheduleCleanCache() {
+    private scheduleCleanCache() {}
 
-    }
-
-    private getProxyService<T extends {}>(name: string, method: string): { service: T, node: IServer } {
+    private getProxyService<T extends {}>(name: string, method: string): { service: T; node: IServer } {
         const node = this.lb.choose(this.options.service);
         const methodKey = `${node.id}/${method}`;
         if (!this.serviceCache.get(methodKey)) {

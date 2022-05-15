@@ -1,13 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { InjectConsulService, ConsulService } from '@nestcloud/consul-service';
-import { IServiceNode } from '@nestcloud/common';
+import { Injectable } from '@nestjs/common';
+import { InjectConsulService, ConsulService } from '@nestcloud2/consul-service';
+import { IServiceNode } from '@nestcloud2/common';
 
 @Injectable()
 export class DiscoveryService {
-    constructor(
-        @InjectConsulService() private readonly consulService: ConsulService,
-    ) {
-    }
+    constructor(@InjectConsulService() private readonly consulService: ConsulService) {}
 
     getYourServiceList() {
         const serviceList: string[] = this.consulService.getServiceNames();
@@ -16,7 +13,7 @@ export class DiscoveryService {
     watchYourServiceList() {
         this.consulService.watchServiceList((services: string[]) => {
             console.log('your service list: ', services);
-        })
+        });
     }
 
     getYourServiceNodes() {
@@ -26,6 +23,6 @@ export class DiscoveryService {
     watchYourServiceNodes() {
         this.consulService.watch('your-service-name', (nodes: IServiceNode[]) => {
             console.log('your service nodes: ', nodes);
-        })
+        });
     }
 }

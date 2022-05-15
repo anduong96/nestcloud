@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import { IService, IServiceServer, IEtcd, sleep } from '@nestcloud/common';
+import { IService, IServiceServer, IEtcd, sleep } from '@nestcloud2/common';
 import { ServiceOptions } from './interfaces/service-options.interface';
 import { Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import * as YAML from 'yamljs';
@@ -21,10 +21,7 @@ export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
     private watcher: Watcher;
     private timer: NodeJS.Timeout;
 
-    constructor(
-        private readonly client: IEtcd,
-        private readonly options: ServiceOptions,
-    ) {
+    constructor(private readonly client: IEtcd, private readonly options: ServiceOptions) {
         const address = this.options.discoveryHost || getIPAddress();
         const port = this.options.port;
         const serviceNode = new ServiceServer(address, port + '');
@@ -106,7 +103,10 @@ export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
         let current = 0;
         while (true) {
             try {
-                await this.client.namespace(this.namespace).delete().key(key);
+                await this.client
+                    .namespace(this.namespace)
+                    .delete()
+                    .key(key);
                 this.logger.log(`Deregister service ${this.self.name} success.`);
                 break;
             } catch (e) {
@@ -122,7 +122,10 @@ export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
     }
 
     private async initServices() {
-        const services = await this.client.namespace(this.namespace).getAll().buffers();
+        const services = await this.client
+            .namespace(this.namespace)
+            .getAll()
+            .buffers();
         for (const key in services) {
             if (services.hasOwnProperty(key)) {
                 const chunks = key.split('__');
@@ -155,29 +158,36 @@ export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
         if (this.timer) {
             clearTimeout(this.timer);
         }
-        this.timer = setTimeout(async () => {
-            if (this.watcher) {
-                try {
-                    await this.watcher.cancel();
-                    this.watcher = null;
-                } catch (e) {
-                    this.recreateServiceWatcher();
-                    this.logger.warn(`Cancel the service watcher fail`);
-                }
-                try {
-                    await this.initServicesWatcher();
-                } catch (e) {
-                    this.recreateServiceWatcher();
-                    this.logger.error('Service watcher created error.', e);
-                }
+        this.timer = setTimeout(
+            async () => {
+                if (this.watcher) {
+                    try {
+                        await this.watcher.cancel();
+                        this.watcher = null;
+                    } catch (e) {
+                        this.recreateServiceWatcher();
+                        this.logger.warn(`Cancel the service watcher fail`);
+                    }
+                    try {
+                        await this.initServicesWatcher();
+                    } catch (e) {
+                        this.recreateServiceWatcher();
+                        this.logger.error('Service watcher created error.', e);
+                    }
 
-                this.logger.log('Service watcher recreate succeed.');
-            }
-        }, immediate ? 0 : 60000);
+                    this.logger.log('Service watcher recreate succeed.');
+                }
+            },
+            immediate ? 0 : 60000,
+        );
     }
 
     private async initServicesWatcher() {
-        this.watcher = await this.client.namespace(this.namespace).watch().prefix('').create();
+        this.watcher = await this.client
+            .namespace(this.namespace)
+            .watch()
+            .prefix('')
+            .create();
         this.watcher.on('connected', () => {
             this.logger.log('Service watcher connected');
         });
@@ -195,7 +205,7 @@ export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
             this.logger.error('Service watcher occur unexpected error and will recreate soon', e.stack);
             this.recreateServiceWatcher(true);
         });
-        this.watcher.on('data', (res) => {
+        this.watcher.on('data', res => {
             res.events.forEach(evt => {
                 const key = evt.kv.key.toString();
                 const chunks = key.split('__');

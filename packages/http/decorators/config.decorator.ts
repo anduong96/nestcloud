@@ -1,15 +1,11 @@
 import 'reflect-metadata';
 import { OPTIONS_METADATA } from '../http.constants';
-import { applyDecorators, AssignMetadata } from '@nestcloud/common/decorators';
+import { applyDecorators, AssignMetadata } from '@nestcloud2/common/decorators';
 
 export function ResponseType(type: string) {
-    return applyDecorators(
-        AssignMetadata(OPTIONS_METADATA, { responseType: type }),
-    );
+    return applyDecorators(AssignMetadata(OPTIONS_METADATA, { responseType: type }));
 }
 
 export function ResponseEncoding(encoding: string) {
-    return applyDecorators(
-        AssignMetadata(OPTIONS_METADATA, { responseEncoding: encoding }),
-    );
+    return applyDecorators(AssignMetadata(OPTIONS_METADATA, { responseEncoding: encoding }));
 }

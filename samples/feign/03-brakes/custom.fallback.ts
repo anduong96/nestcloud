@@ -1,6 +1,7 @@
-import { IFallback } from "@nestcloud/feign";
-import { Injectable, ServiceUnavailableException } from "@nestjs/common";
-import { AxiosResponse } from "axios";
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
+
+import { AxiosResponse } from 'axios';
+import { IFallback } from '@nestcloud2/feign';
 
 @Injectable()
 export class CustomFallback implements IFallback {

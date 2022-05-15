@@ -1,5 +1,5 @@
 import { get, isString, isArray, isObject } from 'lodash';
-import { objectToMap } from '@nestcloud/common';
+import { objectToMap } from '@nestcloud2/common';
 import { compile } from 'handlebars';
 
 export class BootStore {
@@ -27,8 +27,7 @@ export class BootStore {
         this.updateConfigMap();
     }
 
-    public merge(data: any) {
-    }
+    public merge(data: any) {}
 
     public get<T extends any>(path?: string, defaults?: T): T {
         if (!path) {

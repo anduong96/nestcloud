@@ -1,13 +1,14 @@
+import { NEST_BOOT, NEST_CONSUL_CONFIG } from '@nestcloud2/common';
+
+import { ApiController } from './api.controller';
+import { BootModule } from '@nestcloud2/boot';
+import { ConsulConfigModule } from '@nestcloud2/consul-config';
+import { ConsulModule } from '@nestcloud2/consul';
+import { ConsulServiceModule } from '@nestcloud2/consul-service';
+import { GatewayModule } from '@nestcloud2/gateway';
+import { GatewayService } from './gateway.service';
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
-import { ConsulModule } from '@nestcloud/consul';
-import { ConsulConfigModule } from '@nestcloud/consul-config';
-import { ConsulServiceModule } from '@nestcloud/consul-service';
-import { NEST_BOOT, NEST_CONSUL_CONFIG } from '@nestcloud/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { GatewayModule } from '@nestcloud/gateway';
-import { ApiController } from "./api.controller";
-import { GatewayService } from "./gateway.service";
 
 @Module({
     imports: [
@@ -21,7 +22,6 @@ import { GatewayService } from "./gateway.service";
         }),
     ],
     controllers: [ApiController],
-    providers: [GatewayService]
+    providers: [GatewayService],
 })
-export class AppModule {
-}
+export class AppModule {}

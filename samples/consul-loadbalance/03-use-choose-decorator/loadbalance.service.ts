@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { Choose } from '@nestcloud/consul-loadbalance';
-import { IServer } from '@nestcloud/common';
+import { Injectable } from '@nestjs/common';
+import { Choose } from '@nestcloud2/consul-loadbalance';
+import { IServer } from '@nestcloud2/common';
 
 @Injectable()
 export class LoadbalanceService {

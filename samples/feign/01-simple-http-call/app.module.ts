@@ -1,16 +1,12 @@
+import { BootModule } from '@nestcloud2/boot';
+import { FeignModule } from '@nestcloud2/feign';
+import { HttpClient } from './http.client';
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
-import { FeignModule } from '@nestcloud/feign';
-import { HttpClient } from "./http.client";
-import { TestService } from "./test.service";
-import { NEST_BOOT } from "@nestcloud/common";
+import { NEST_BOOT } from '@nestcloud2/common';
+import { TestService } from './test.service';
 
 @Module({
-    imports: [
-        BootModule.register(__dirname, 'config.yaml'),
-        FeignModule.register({dependencies: [NEST_BOOT]}),
-    ],
+    imports: [BootModule.register(__dirname, 'config.yaml'), FeignModule.register({ dependencies: [NEST_BOOT] })],
     providers: [HttpClient, TestService],
 })
-export class AppModule {
-}
+export class AppModule {}

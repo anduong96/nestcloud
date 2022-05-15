@@ -1,7 +1,7 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { AsyncLoadbalanceOptions, LoadbalanceOptions } from './interfaces/loadbalance-options.interface';
 import { AXIOS_INSTANCE_PROVIDER } from './loadbalance.constants';
-import { Scanner, BOOT, CONFIG, IBoot, IConfig, LOADBALANCE } from '@nestcloud/common';
+import { Scanner, BOOT, CONFIG, IBoot, IConfig, LOADBALANCE } from '@nestcloud2/common';
 import { DiscoveryModule } from '@nestjs/core';
 import { Loadbalance } from './loadbalance';
 import { LoadbalanceChecker } from './loadbalance.checker';
@@ -44,7 +44,7 @@ export class LoadbalanceModule {
 
         const loadbalanceProvider = {
             provide: LOADBALANCE,
-            useExisting: Loadbalance
+            useExisting: Loadbalance,
         };
 
         const axiosProvider = {
@@ -54,7 +54,8 @@ export class LoadbalanceModule {
 
         return {
             module: LoadbalanceModule,
-            providers: [loadbalanceOptionsProvider,
+            providers: [
+                loadbalanceOptionsProvider,
                 Loadbalance,
                 LoadbalanceChecker,
                 loadbalanceProvider,

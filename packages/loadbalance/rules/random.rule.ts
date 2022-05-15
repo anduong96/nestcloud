@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 import { Random } from 'random-js';
-import { ILoadbalancer } from '@nestcloud/common';
+import { ILoadbalancer } from '@nestcloud2/common';
 import { Server } from '../server';
 import { Rule } from '../interfaces/rule.interface';
 import { Injectable } from '@nestjs/common';

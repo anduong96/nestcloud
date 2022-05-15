@@ -1,6 +1,6 @@
 import { Module, DynamicModule, Global } from '@nestjs/common';
 import { AsyncBrakesOptions, BrakesOptions } from './interfaces/brakes-options.interface';
-import { IBoot, BOOT, BRAKES } from '@nestcloud/common';
+import { IBoot, BOOT, BRAKES } from '@nestcloud2/common';
 import { BRAKES_OPTIONS_PROVIDER } from './brakes.constants';
 import { Brakes } from './brakes.class';
 import { BrakesFactory } from './brakes.factory';
@@ -36,7 +36,7 @@ export class BrakesModule {
 
         const brakesProvider = {
             provide: BRAKES,
-            useFactory: (brakes) => brakes,
+            useFactory: brakes => brakes,
             inject: [Brakes],
         };
 

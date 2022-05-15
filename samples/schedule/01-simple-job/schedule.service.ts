@@ -1,20 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { Cron, Interval, Timeout, NestSchedule } from '@nestcloud/schedule';
+import { Cron, Interval, NestSchedule, Timeout } from '@nestcloud2/schedule';
+
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ScheduleService extends NestSchedule {
     @Cron('0 0 2 * *')
-    doCronJob() {
-
-    }
+    doCronJob() {}
 
     @Interval(5000)
-    doIntervalJob() {
-
-    }
+    doIntervalJob() {}
 
     @Timeout(5000)
-    doOnceJob() {
-
-    }
+    doOnceJob() {}
 }

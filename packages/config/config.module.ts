@@ -1,10 +1,10 @@
-import { IBoot, IConsul, IKubernetes, IEtcd } from '@nestcloud/common';
-import { BOOT, CONFIG, CONSUL, KUBERNETES, ETCD } from '@nestcloud/common';
+import { IBoot, IConsul, IKubernetes, IEtcd } from '@nestcloud2/common';
+import { BOOT, CONFIG, CONSUL, KUBERNETES, ETCD } from '@nestcloud2/common';
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { CONFIG_OPTIONS_PROVIDER } from './config.constants';
 import { ConfigFactory } from './config.factory';
 import { DiscoveryModule } from '@nestjs/core';
-import { IConfig } from '@nestcloud/common';
+import { IConfig } from '@nestcloud2/common';
 import { NO_DEPS_MODULE_FOUND } from './config.messages';
 import { ConfigOptions } from './interfaces/config-options.interface';
 import { ConfigStore } from './config.store';

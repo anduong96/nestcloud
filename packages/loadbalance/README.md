@@ -1,4 +1,3 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
@@ -7,9 +6,9 @@
 # NestCloud - Loadbalance
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -22,84 +21,82 @@ This is a software load balancers primary for rest calls.
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/loadbalance
+$ npm i --save @nestcloud2/loadbalance
 ```
 
 ## Quick Start
 
 ### Import Module
 
-Before you import the lb module, you need import `@nestcloud/service` module at first.
+Before you import the lb module, you need import `@nestcloud2/service` module at first.
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { LoadbalanceModule } from '@nestcloud/loadbalance';
+import { LoadbalanceModule } from '@nestcloud2/loadbalance';
 
 @Module({
-  imports: [
-      LoadbalanceModule.forRoot({
-        rule: 'RandomRule',
-        services: [{
-          name: 'test-service',
-          rule: 'RoundRobinRule',
-        }],
-      })
-  ],
+    imports: [
+        LoadbalanceModule.forRoot({
+            rule: 'RandomRule',
+            services: [
+                {
+                    name: 'test-service',
+                    rule: 'RoundRobinRule',
+                },
+            ],
+        }),
+    ],
 })
 export class AppModule {}
 ```
 
 #### Import With Boot Module
 
-Except `@nestcloud/boot` module you can also use `@nestcloud/config` module too. 
+Except `@nestcloud2/boot` module you can also use `@nestcloud2/config` module too.
 
 app.module.ts:
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { BOOT } from "@nestcloud/common";
-import { BootModule } from "@nestcloud/boot";
-import { LoadbalanceModule } from '@nestcloud/loadbalance';
+import { BOOT } from '@nestcloud2/common';
+import { BootModule } from '@nestcloud2/boot';
+import { LoadbalanceModule } from '@nestcloud2/loadbalance';
 import { resolve } from 'path';
 
 @Module({
-  imports: [
-    BootModule.forRoot({
-      filePath: resolve(__dirname, 'config.yaml'),
-    }),
-    LoadbalanceModule.forRootAsync({ inject: [BOOT] }),
-  ]
+    imports: [
+        BootModule.forRoot({
+            filePath: resolve(__dirname, 'config.yaml'),
+        }),
+        LoadbalanceModule.forRootAsync({ inject: [BOOT] }),
+    ],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 config.yaml:
 
 ```yaml
 loadbalance:
-  rule: RandomRule
-  services:
-    - name: test-service
-      rule: RoundRobinRule
+    rule: RandomRule
+    services:
+        - name: test-service
+          rule: RoundRobinRule
 ```
 
 ## Usage
 
 ```typescript
 import { Injectalbe } from '@nestjs/common';
-import { InjectLoadbalancee, Loadbalance } from '@nestcloud/loadbalance';
+import { InjectLoadbalancee, Loadbalance } from '@nestcloud2/loadbalance';
 
 @Injectalbe()
 export class TestService {
-  constructor(
-    @InjectLoadbalancee() private readonly lb: Loadbalance
-  ) {
-  }
+    constructor(@InjectLoadbalancee() private readonly lb: Loadbalance) {}
 
-  chooseOneNode() {
-      const node = this.lb.choose('your-service-name');
-  }
+    chooseOneNode() {
+        const node = this.lb.choose('your-service-name');
+    }
 }
 ```
 
@@ -109,23 +106,23 @@ It will call `lb.choose` every you use `this.server`.
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { Choose, Server } from '@nestcloud/loadbalance';
+import { Choose, Server } from '@nestcloud2/loadbalance';
 
 @Injectable()
 export class TestService {
-  @Choose('test-service')
-  private readonly server: Server;
+    @Choose('test-service')
+    private readonly server: Server;
 }
 ```
 
 ### Custom Loadbalance Rule
 
 ```typescript
-import { Rule, Loadbalancer } from '@nestcloud/loadbalance';
+import { Rule, Loadbalancer } from '@nestcloud2/loadbalance';
 
 export class CustomLoadbalanceRule implements Rule {
     private loadbalancer: Loadbalancer;
-    
+
     init(loadbalancer: Loadbalancer) {
         this.loadbalancer = loadbalancer;
     }
@@ -139,13 +136,12 @@ export class CustomLoadbalanceRule implements Rule {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { UseRules } from '@nestcloud/loadbalance';
+import { UseRules } from '@nestcloud2/loadbalance';
 import { CustomLoadbalanceRule } from './CustomLoadbalanceRule';
 
 @Injectable()
 @UseRules(CustomLoadbalanceRule)
-export class LoadbalanceRuleRegister {
-}
+export class LoadbalanceRuleRegister {}
 ```
 
 ## API
@@ -156,10 +152,10 @@ export class LoadbalanceRuleRegister {
 
 Import loadbalance module.
 
-| field            | type            | description         |
-| :--------------- | :-------------- | :------------------ |
-| options.rule     | string          | global lb rule name |
-| options.services | ServiceOptions  | set service rule    |
+| field            | type           | description         |
+| :--------------- | :------------- | :------------------ |
+| options.rule     | string         | global lb rule name |
+| options.services | ServiceOptions | set service rule    |
 
 #### static forRootAsync\(options\): DynamicModule
 
@@ -193,8 +189,8 @@ Get loadbalancer.
 
 ## Stay in touch
 
-- Author - [NestCloud](https://github.com/nest-cloud)
+-   Author - [NestCloud](https://github.com/nest-cloud)
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).

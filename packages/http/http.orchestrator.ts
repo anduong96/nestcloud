@@ -5,10 +5,10 @@ import { getRequestParams } from './utils/params.util';
 import { HTTP_OPTIONS_PROVIDER, RESPONSE, RESPONSE_BODY, RESPONSE_HEADER } from './http.constants';
 import { HttpOptions } from './interfaces/http-options.interface';
 import uriParams = require('uri-params');
-import { Scanner, ILoadbalance, LOADBALANCE, BRAKES } from '@nestcloud/common';
+import { Scanner, ILoadbalance, LOADBALANCE, BRAKES } from '@nestcloud2/common';
 import { HttpClient } from './http.client';
 import { Interceptor } from './interfaces/interceptor.interface';
-import { Brakes } from '@nestcloud/brakes';
+import { Brakes } from '@nestcloud2/brakes';
 
 interface DecoratorRequest {
     instance: Function;
@@ -30,8 +30,7 @@ export class HttpOrchestrator {
         private readonly http: HttpClient,
         private readonly scanner: Scanner,
         @Inject(HTTP_OPTIONS_PROVIDER) private readonly options: HttpOptions,
-    ) {
-    }
+    ) {}
 
     public addDecoratorRequests(
         instance: Function,

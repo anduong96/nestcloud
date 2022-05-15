@@ -1,7 +1,8 @@
+import { LoggerModule, TypeormLogger } from '@nestcloud2/logger';
+
+import { LoggerService } from './logger.service';
 import { Module } from '@nestjs/common';
-import { NEST_TYPEORM_LOGGER_PROVIDER } from '@nestcloud/common';
-import { LoggerModule, TypeormLogger } from '@nestcloud/logger';
-import { LoggerService } from "./logger.service";
+import { NEST_TYPEORM_LOGGER_PROVIDER } from '@nestcloud2/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -10,9 +11,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         TypeOrmModule.forRootAsync({
             useFactory: (logger: TypeormLogger) => ({ logger }),
             inject: [NEST_TYPEORM_LOGGER_PROVIDER],
-        })
+        }),
     ],
-    providers: [LoggerService]
+    providers: [LoggerService],
 })
-export class AppModule {
-}
+export class AppModule {}

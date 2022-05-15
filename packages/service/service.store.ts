@@ -1,9 +1,11 @@
 import * as Consul from 'consul';
-import { intersection } from 'lodash';
-import { IServiceServer, PASSING } from '@nestcloud/common';
-import { handleConsulNodes } from './utils/service.util';
-import { Watcher } from './service-watcher.consul';
+
+import { IServiceServer, PASSING } from '@nestcloud2/common';
 import { toList, toValueList } from './utils/array.util';
+
+import { Watcher } from './service-watcher.consul';
+import { handleConsulNodes } from './utils/service.util';
+import { intersection } from 'lodash';
 
 export class ServiceStore {
     private watcher = null;
@@ -14,10 +16,7 @@ export class ServiceStore {
     private readonly serviceCallbackMaps: Map<string, ((nodes: IServiceServer[]) => void)[]> = new Map();
     private readonly servicesCallbacks: ((services: string[]) => void)[] = [];
 
-    constructor(
-        private readonly consul: Consul, private readonly includes?: string[],
-    ) {
-    }
+    constructor(private readonly consul: Consul, private readonly includes?: string[]) {}
 
     public async init() {
         let services = await this.consul.catalog.service.list();

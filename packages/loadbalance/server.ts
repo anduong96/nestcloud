@@ -1,5 +1,5 @@
 import { ServerState } from './server-state';
-import { IServer } from '@nestcloud/common';
+import { IServer } from '@nestcloud2/common';
 
 export class Server implements IServer {
     id: string;

@@ -1,10 +1,11 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
 import { AsyncKubernetesOptions, KubernetesOptions } from './interfaces/kubernetes-options.interface';
-import { KUBERNETES_OPTIONS_PROVIDER } from './kubernetes.constants';
-import { Kubernetes } from './kubernetes';
-import { BOOT, CONFIG, IBoot, IConfig, KUBERNETES } from '@nestcloud/common';
-import { KubeConfig } from '@kubernetes/client-node';
+import { BOOT, CONFIG, IBoot, IConfig, KUBERNETES } from '@nestcloud2/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 import { isObject, isString } from 'util';
+
+import { KUBERNETES_OPTIONS_PROVIDER } from './kubernetes.constants';
+import { KubeConfig } from '@kubernetes/client-node';
+import { Kubernetes } from './kubernetes';
 import Api = require('kubernetes-client');
 
 @Global()

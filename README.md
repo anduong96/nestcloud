@@ -1,9 +1,7 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nest-cloud/nestcloud
-
 
 # NestCloud
 
@@ -12,9 +10,9 @@
 <p align="center">
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/common.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/common.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/common.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/common.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/common.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/common.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -27,12 +25,12 @@
 ## Install
 
 ```shell script
-$ npm install @nestcloud/cli -g
+$ npm install @nestcloud2/cli -g
 ```
 
 The NestCloud CLI is a command-line interface tool that helps you to initialize your NestCloud applications.
 
-Read more [here](https://github.com/nest-cloud/nestcloud-cli) 
+Read more [here](https://github.com/nest-cloud/nestcloud-cli)
 
 ## Quick Start
 
@@ -45,9 +43,9 @@ $ nestcloud new nestcloud-app -t etcd-app
 
 ### Starter
 
-[nestcloud-consul-starter](https://github.com/nest-cloud/nestcloud-consul-starter) 
+[nestcloud-consul-starter](https://github.com/nest-cloud/nestcloud-consul-starter)
 
-[nestcloud-etcd-starter](https://github.com/nest-cloud/nestcloud-etcd-starter) 
+[nestcloud-etcd-starter](https://github.com/nest-cloud/nestcloud-etcd-starter)
 
 ## Examples
 
@@ -56,7 +54,6 @@ $ nestcloud new nestcloud-app -t etcd-app
 [nestcloud-grpc-example](https://github.com/nest-cloud/nestcloud-grpc-example)
 
 [nestcloud-kubernetes-example](https://github.com/nest-cloud/nestcloud-kubernetes-example)
-
 
 ## Components
 
@@ -116,8 +113,8 @@ Logger module based on winston@2.x
 
 ## Stay in touch
 
-- Author - [Miaowing](https://zf.ink)
-- Website - [https://nestcloud.org](https://nestcloud.org)
+-   Author - [Miaowing](https://zf.ink)
+-   Website - [https://nestcloud.org](https://nestcloud.org)
 
 ## Contributors
 
@@ -151,4 +148,4 @@ Support this project with your organization. Your logo will show up here with a 
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).

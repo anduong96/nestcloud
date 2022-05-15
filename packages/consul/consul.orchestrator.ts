@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnApplicationShutdown } from '@nestjs/common';
-import { Scanner, Watch, KeyValueOptions, KeyValueMetadata, setValue } from '@nestcloud/common';
+import { Scanner, Watch, KeyValueOptions, KeyValueMetadata, setValue } from '@nestcloud2/common';
 import { Consul } from './consul.class';
 import { KVResponse } from './interfaces/consul-kv-response.interface';
 import { CONSUL_WATCH_ERROR } from './consul.messages';
@@ -18,22 +18,17 @@ export class ConsulOrchestrator implements OnApplicationShutdown {
     private readonly keyValues = new Map<string, KeyValue>();
     private logger = new Logger(ConsulOrchestrator.name);
 
-    constructor(
-        private readonly scanner: Scanner,
-        @InjectConsul() private readonly consul: Consul,
-    ) {
-    }
+    constructor(private readonly scanner: Scanner, @InjectConsul() private readonly consul: Consul) {}
 
     public addKeyValues(target: Function, keyValues: KeyValueMetadata[]) {
         keyValues.forEach(({ name, property, options }) => {
             const key = `${name}__${property}__${target.constructor.name}`;
             this.keyValues.set(key, { name, property, target, options });
         });
-
     }
 
     onApplicationShutdown(signal?: string): any {
-        this.keyValues.forEach(item => item.watcher ? item.watcher.end() : '');
+        this.keyValues.forEach(item => (item.watcher ? item.watcher.end() : ''));
     }
 
     public async mountKeyValues() {

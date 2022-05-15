@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { Get, Query, Loadbalanced } from '@nestcloud/feign';
-import { UseBrakes, UseFallback, UseHeathCheck } from "@nestcloud/feign";
-import { CustomFallback } from "./custom.fallback";
-import { CustomCheck } from "./custom.check";
+import { Injectable } from '@nestjs/common';
+import { Get, Query, Loadbalanced } from '@nestcloud2/feign';
+import { UseBrakes, UseFallback, UseHeathCheck } from '@nestcloud2/feign';
+import { CustomFallback } from './custom.fallback';
+import { CustomCheck } from './custom.check';
 
 @Injectable()
 @Loadbalanced('your-service-name')
@@ -17,6 +17,5 @@ import { CustomCheck } from "./custom.check";
 @UseHeathCheck(CustomCheck)
 export class HttpClient {
     @Get('/api/data')
-    getRemoteData(@Query() query?: any): any {
-    }
+    getRemoteData(@Query() query?: any): any {}
 }

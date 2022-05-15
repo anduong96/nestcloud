@@ -4,7 +4,7 @@ import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { LoadbalanceMetadataAccessor } from './loadbalance-metadata.accessor';
 import { LoadbalanceOrchestrator } from './loadbalance.orchestrator';
 import { Rule } from './interfaces/rule.interface';
-import { Scanner } from '@nestcloud/common';
+import { Scanner } from '@nestcloud2/common';
 import { LoadbalanceRuleRegistry } from './loadbalance-rule.registry';
 
 @Injectable()
@@ -15,8 +15,7 @@ export class LoadbalanceExplorer implements OnModuleInit {
         private readonly loadbalanceOrchestrator: LoadbalanceOrchestrator,
         private readonly loadbalanceRuleRegistry: LoadbalanceRuleRegistry,
         private readonly scanner: Scanner,
-    ) {
-    }
+    ) {}
 
     async onModuleInit() {
         this.explore();

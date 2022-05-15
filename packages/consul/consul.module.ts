@@ -1,7 +1,7 @@
 import { Module, DynamicModule, Global } from '@nestjs/common';
 import { AsyncConsulOptions, ConsulOptions } from './interfaces/consul-options.interface';
 import { CONSUL_OPTIONS_PROVIDER } from './consul.constants';
-import { Scanner, IBoot, BOOT, CONSUL } from '@nestcloud/common';
+import { Scanner, IBoot, BOOT, CONSUL } from '@nestcloud2/common';
 import { Consul } from './consul.class';
 import { ConsulExplorer } from './consul.explorer';
 import { ConsulOrchestrator } from './consul.orchestrator';

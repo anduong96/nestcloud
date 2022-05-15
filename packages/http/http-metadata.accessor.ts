@@ -8,10 +8,10 @@ import {
     RESPONSE,
     RESPONSE_HEADER,
 } from './http.constants';
-import { getMetadata, BRAKES_METADATA } from '@nestcloud/common';
+import { getMetadata, BRAKES_METADATA } from '@nestcloud2/common';
 import { Injectable } from '@nestjs/common';
 import { ParamsMetadata } from './interfaces/params-metadata.interface';
-import { LOADBALANCE_SERVICE } from '@nestcloud/common';
+import { LOADBALANCE_SERVICE } from '@nestcloud2/common';
 
 @Injectable()
 export class HttpMetadataAccessor {

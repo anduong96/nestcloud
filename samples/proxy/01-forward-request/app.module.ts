@@ -1,11 +1,11 @@
+import { ApiController } from './api.controller';
+import { BootModule } from '@nestcloud2/boot';
+import { ConsulModule } from '@nestcloud2/consul';
+import { ConsulServiceModule } from '@nestcloud2/consul-service';
+import { GatewayModule } from '@nestcloud2/gateway';
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
-import { ConsulModule } from '@nestcloud/consul';
-import { ConsulServiceModule } from '@nestcloud/consul-service';
-import { NEST_BOOT } from '@nestcloud/common';
+import { NEST_BOOT } from '@nestcloud2/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { GatewayModule } from '@nestcloud/gateway';
-import { ApiController } from "./api.controller";
 
 @Module({
     imports: [
@@ -17,7 +17,6 @@ import { ApiController } from "./api.controller";
             useFactory: () => ({ endpoints: [{ url: '/health', healthIndicators: [] }] }),
         }),
     ],
-    controllers: [ApiController]
+    controllers: [ApiController],
 })
-export class AppModule {
-}
+export class AppModule {}

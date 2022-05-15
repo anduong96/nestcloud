@@ -1,6 +1,6 @@
 import { OnModuleDestroy, OnModuleInit, Logger } from '@nestjs/common';
 import * as md5encode from 'blueimp-md5';
-import { IConsul, IService, IServiceServer, sleep } from '@nestcloud/common';
+import { IConsul, IService, IServiceServer, sleep } from '@nestcloud2/common';
 import { get } from 'lodash';
 
 import { ServiceOptions } from './interfaces/service-options.interface';

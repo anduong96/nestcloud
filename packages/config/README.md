@@ -1,4 +1,3 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
@@ -7,9 +6,9 @@
 # NestCloud - Config
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -22,7 +21,7 @@ A NestCloud component for getting and watching configurations from consul kv or 
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/config
+$ npm i --save @nestcloud2/config
 ```
 
 ## Quick Start
@@ -31,8 +30,8 @@ $ npm i --save @nestcloud/config
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestcloud/config';
-import { BOOT, CONSUL, ETCD, KUBERNETES } from '@nestcloud/common';
+import { ConfigModule } from '@nestcloud2/config';
+import { BOOT, CONSUL, ETCD, KUBERNETES } from '@nestcloud2/common';
 
 @Module({
     imports: [
@@ -44,8 +43,7 @@ import { BOOT, CONSUL, ETCD, KUBERNETES } from '@nestcloud/common';
         ConfigModule.forRootAsync({ inject: [BOOT, KUBERNETES] }),
     ],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 ### Configurations
@@ -55,17 +53,17 @@ export class AppModule {
 
 ```yaml
 config:
-  name: nestcloud-conf
-  namespace: default
-  path: config.yaml
+    name: nestcloud-conf
+    namespace: default
+    path: config.yaml
 ```
 
 #### Configurations In Consul KV Or Etcd
 
 ```yaml
 user:
-  info:
-    name: 'test'
+    info:
+        name: 'test'
 ```
 
 #### Configurations In Kubernetes ConfigMap
@@ -73,33 +71,31 @@ user:
 ```yaml
 apiVersion: v1
 data:
-  config.yaml: |-
-    user:
-      info:
-        name: 'test'
+    config.yaml: |-
+        user:
+          info:
+            name: 'test'
 
 kind: ConfigMap
 metadata:
-  name: nestcloud-conf
-  namespace: default
+    name: nestcloud-conf
+    namespace: default
 ```
 
 #### Inject Config Client
 
 ```typescript
-import { Injectable,OnModuleInit } from '@nestjs/common';
-import { InjectConfig, Config } from '@nestcloud/config';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectConfig, Config } from '@nestcloud2/config';
 
 @Injectable()
 export class ConfigService implements OnModuleInit {
-  constructor(
-      @InjectConfig() private readonly config: Config
-  ) {}
+    constructor(@InjectConfig() private readonly config: Config) {}
 
-  onModuleInit() {
-      const userInfo = this.config.get('user.info', {name: 'judi'});
-      console.log(userInfo);
-  }
+    onModuleInit() {
+        const userInfo = this.config.get('user.info', { name: 'judi' });
+        console.log(userInfo);
+    }
 }
 ```
 
@@ -107,12 +103,12 @@ export class ConfigService implements OnModuleInit {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { ConfigValue } from '@nestcloud/config';
+import { ConfigValue } from '@nestcloud2/config';
 
 @Injectable()
 export class ConfigService {
-  @ConfigValue('user.info', {name: 'judi'})
-  private readonly userInfo;
+    @ConfigValue('user.info', { name: 'judi' })
+    private readonly userInfo;
 }
 ```
 
@@ -163,7 +159,6 @@ Update configuration.
 | path  | string | the path of the configuration |
 | value | any    | the configuration             |
 
-
 ### Decorators
 
 #### ConfigValue\(path?: string, defaultValue?: any\): PropertyDecorator
@@ -172,8 +167,8 @@ Inject configuration to attribute. It will change realtime when the value change
 
 ## Stay in touch
 
-- Author - [NestCloud](https://github.com/nest-cloud)
+-   Author - [NestCloud](https://github.com/nest-cloud)
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).

@@ -1,5 +1,5 @@
 import { IncomingMessage } from 'http';
-import { IServer } from '@nestcloud/common';
+import { IServer } from '@nestcloud2/common';
 
 export interface Request extends IncomingMessage {
     proxy?: {
@@ -7,6 +7,6 @@ export interface Request extends IncomingMessage {
         server?: IServer;
         uri: string;
         service?: string;
-        parameters?: { [key: string]: string | number },
+        parameters?: { [key: string]: string | number };
     };
 }

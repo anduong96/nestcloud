@@ -1,4 +1,4 @@
-import { ILoadbalancer, IServer } from '@nestcloud/common';
+import { ILoadbalancer, IServer } from '@nestcloud2/common';
 import { Server } from './server';
 import { ServerState } from './server-state';
 import { Rule } from './interfaces/rule.interface';

@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { ConfigValue } from '@nestcloud/consul-config';
+import { ConfigValue } from '@nestcloud2/consul-config';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ConfigService {

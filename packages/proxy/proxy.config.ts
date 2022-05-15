@@ -1,5 +1,5 @@
 import { ProxyOptions } from './interfaces/proxy-options.interface';
-import { IBoot, IConfig } from '@nestcloud/common';
+import { IBoot, IConfig } from '@nestcloud2/common';
 import { OnModuleInit } from '@nestjs/common';
 
 export class ProxyConfig implements OnModuleInit {
@@ -11,8 +11,7 @@ export class ProxyConfig implements OnModuleInit {
         private readonly opts: ProxyOptions = {},
         private readonly boot: IBoot,
         private readonly config: IConfig,
-    ) {
-    }
+    ) {}
 
     public getRoutes() {
         return this.options.routes || [];
@@ -40,6 +39,5 @@ export class ProxyConfig implements OnModuleInit {
                 this.ref && this.ref(this.options);
             });
         }
-
     }
 }

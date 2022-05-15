@@ -7,7 +7,7 @@ import {
     Scanner,
     SERVICE,
     stringToKeyValue,
-} from '@nestcloud/common';
+} from '@nestcloud2/common';
 import { ServiceOptions } from './interfaces/service-options.interface';
 import { Loadbalancer } from './loadbalancer';
 import { Server } from './server';
@@ -30,8 +30,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
         private readonly loadbalanceChecker: LoadbalanceChecker,
         private readonly loadbalanceRuleRegistry: LoadbalanceRuleRegistry,
         @Inject(SERVICE) private readonly service: IService,
-    ) {
-    }
+    ) {}
 
     async onModuleInit(): Promise<void> {
         await this.init();
@@ -120,12 +119,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
             return server;
         });
 
-        this.loadbalancers.set(serviceName, new Loadbalancer(
-            serviceName,
-            serviceName,
-            servers,
-            rule,
-        ));
+        this.loadbalancers.set(serviceName, new Loadbalancer(serviceName, serviceName, servers, rule));
     }
 
     private pingServers() {

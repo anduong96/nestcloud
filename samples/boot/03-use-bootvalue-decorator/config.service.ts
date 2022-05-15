@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { BootValue } from "@nestcloud/boot";
+import { BootValue } from '@nestcloud2/boot';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ConfigService {

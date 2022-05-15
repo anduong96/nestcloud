@@ -1,5 +1,5 @@
 import { Module, DynamicModule, Global, Logger } from '@nestjs/common';
-import { LOGGER } from '@nestcloud/common';
+import { LOGGER } from '@nestcloud2/common';
 import { TypeormLogger } from './typeorm-logger';
 import { TYPEORM_LOGGER } from './logger.constants';
 

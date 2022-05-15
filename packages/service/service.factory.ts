@@ -1,14 +1,12 @@
-import { ServiceOptions } from './interfaces/service-options.interface';
-import { EtcdService } from './service.etcd';
+import { CONSUL, ETCD } from '@nestcloud2/common';
+
 import { ConsulService } from './service.consul';
+import { EtcdService } from './service.etcd';
 import { NO_DEPS_MODULE_FOUND } from './service.messages';
-import { CONSUL, ETCD } from '@nestcloud/common';
+import { ServiceOptions } from './interfaces/service-options.interface';
 
 export class ServiceFactory {
-    constructor(
-        private readonly options: ServiceOptions,
-    ) {
-    }
+    constructor(private readonly options: ServiceOptions) {}
 
     create(backend: string, ref: any) {
         switch (backend) {

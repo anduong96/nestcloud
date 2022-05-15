@@ -1,4 +1,4 @@
-import { IConsul } from '@nestcloud/common';
+import { IConsul } from '@nestcloud2/common';
 
 export class Watcher {
     private watcher;
@@ -8,8 +8,7 @@ export class Watcher {
     constructor(
         private readonly consul: IConsul,
         private readonly options: { retry?: number; method: any; params?: object },
-    ) {
-    }
+    ) {}
 
     getLastChangeTime() {
         return this.lastChangeTime;

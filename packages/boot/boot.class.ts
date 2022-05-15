@@ -1,4 +1,4 @@
-import { IBoot } from '@nestcloud/common';
+import { IBoot } from '@nestcloud2/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { BootFileLoader } from './boot-file.loader';
 import { BootStore } from './boot.store';

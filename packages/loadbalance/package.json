@@ -1,23 +1,23 @@
 {
-  "name": "@nestcloud/loadbalance",
-  "version": "0.7.17",
-  "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
-  "author": "Miaowing <i@zfeng.net>",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nest-cloud/nestcloud.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nest-cloud/nestcloud/issues"
-  },
-  "homepage": "https://github.com/nest-cloud/nestcloud#readme",
-  "dependencies": {
-    "axios": "^0.18.0",
-    "lodash": "^4.17.11",
-    "random-js": "^2.0.0-rc2"
-  }
+    "name": "@nestcloud2/loadbalance",
+    "version": "0.7.17",
+    "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
+    "author": "Miaowing <i@zfeng.net>",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nest-cloud/nestcloud.git"
+    },
+    "bugs": {
+        "url": "https://github.com/nest-cloud/nestcloud/issues"
+    },
+    "homepage": "https://github.com/nest-cloud/nestcloud#readme",
+    "dependencies": {
+        "axios": "^0.18.0",
+        "lodash": "^4.17.11",
+        "random-js": "^2.0.0-rc2"
+    }
 }

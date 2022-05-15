@@ -1,13 +1,14 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { ETCD, IBoot, BOOT } from '@nestcloud/common';
+import { AsyncEtcdOptions, EtcdOptions } from './interfaces/etcd-options.interface';
+import { BOOT, ETCD, IBoot } from '@nestcloud2/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+import { Etcd3, IOptions } from 'etcd3';
+
+import { DiscoveryModule } from '@nestjs/core';
 import { ETCD_OPTIONS_PROVIDER } from './etcd.constants';
 import { Etcd } from './etcd';
-import { AsyncEtcdOptions, EtcdOptions } from './interfaces/etcd-options.interface';
-import { Etcd3, IOptions } from 'etcd3';
-import { DiscoveryModule } from '@nestjs/core';
+import { EtcdExplorer } from './etcd.explorer';
 import { EtcdMetadataAccessor } from './etcd-metadata.accessor';
 import { EtcdOrchestrator } from './etcd.orchestrator';
-import { EtcdExplorer } from './etcd.explorer';
 
 @Global()
 @Module({

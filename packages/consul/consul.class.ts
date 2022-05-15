@@ -1,17 +1,17 @@
 import {
-    IConsul,
     Acl,
     Agent,
     Catalog,
+    CommonOptions,
     Event,
     Health,
+    IConsul,
     Kv,
+    Lock,
     Session,
     Status,
-    Lock,
     Watch,
-    CommonOptions,
-} from '@nestcloud/common';
+} from '@nestcloud2/common';
 
 export class Consul implements IConsul {
     acl: Acl;

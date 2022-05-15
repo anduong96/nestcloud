@@ -1,13 +1,14 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { HTTP, BOOT, CONFIG, IBoot, IConfig, Scanner } from '@nestcloud/common';
-import { AsyncHttpOptions, HttpOptions } from './interfaces/http-options.interface';
 import { AXIOS_INSTANCE_PROVIDER, HTTP_OPTIONS_PROVIDER } from './http.constants';
-import axios from 'axios';
+import { AsyncHttpOptions, HttpOptions } from './interfaces/http-options.interface';
+import { BOOT, CONFIG, HTTP, IBoot, IConfig, Scanner } from '@nestcloud2/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
 import { DiscoveryModule } from '@nestjs/core';
-import { HttpOrchestrator } from './http.orchestrator';
-import { HttpMetadataAccessor } from './http-metadata.accessor';
-import { HttpExplorer } from './http.explorer';
 import { HttpClient } from './http.client';
+import { HttpExplorer } from './http.explorer';
+import { HttpMetadataAccessor } from './http-metadata.accessor';
+import { HttpOrchestrator } from './http.orchestrator';
+import axios from 'axios';
 
 @Global()
 @Module({

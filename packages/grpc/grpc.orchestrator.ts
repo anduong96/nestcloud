@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
-import { Scanner, ILoadbalance, LOADBALANCE } from '@nestcloud/common';
+import { Scanner, ILoadbalance, LOADBALANCE } from '@nestcloud2/common';
 import { GrpcClientMetadata } from './interfaces/grpc-client-metadata.interface';
 import { ClientOptions } from './interfaces/client-options.interface';
 import { GrpcServiceMetadata } from './interfaces/grpc-service-metadata.interface';
@@ -20,11 +20,7 @@ export class GrpcOrchestrator implements OnApplicationBootstrap {
     private readonly clients = new Map<string, Client>();
     private readonly services = new Map<string, Service>();
 
-    constructor(
-        private readonly scanner: Scanner,
-        @Inject(LOADBALANCE) private readonly lb: ILoadbalance,
-    ) {
-    }
+    constructor(private readonly scanner: Scanner, @Inject(LOADBALANCE) private readonly lb: ILoadbalance) {}
 
     public addClients(target: Function, clients: GrpcClientMetadata[]) {
         clients.forEach(({ property, options }) => {

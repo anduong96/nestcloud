@@ -1,4 +1,4 @@
-import { applyDecorators, ExtendMetadata } from '@nestcloud/common';
+import { applyDecorators, ExtendMetadata } from '@nestcloud2/common';
 import { GRPC_CLIENT } from '../grpc.constants';
 import { ClientOptions } from '../interfaces/client-options.interface';
 

@@ -1,21 +1,21 @@
 {
-  "name": "@nestcloud/kubernetes",
-  "version": "0.7.17",
-  "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
-  "author": "Miaowing <i@zfeng.net>",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nest-cloud/nestcloud.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nest-cloud/nestcloud/issues"
-  },
-  "homepage": "https://github.com/nest-cloud/nestcloud#readme",
-  "peerDependencies": {
-    "kubernetes-client": "^8.3.3"
-  }
+    "name": "@nestcloud2/kubernetes",
+    "version": "0.7.17",
+    "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
+    "author": "Miaowing <i@zfeng.net>",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nest-cloud/nestcloud.git"
+    },
+    "bugs": {
+        "url": "https://github.com/nest-cloud/nestcloud/issues"
+    },
+    "homepage": "https://github.com/nest-cloud/nestcloud#readme",
+    "peerDependencies": {
+        "kubernetes-client": "^8.3.3"
+    }
 }

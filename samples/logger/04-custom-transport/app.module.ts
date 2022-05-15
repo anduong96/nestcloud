@@ -1,12 +1,9 @@
+import { LoggerModule } from '@nestcloud2/logger';
+import { LoggerService } from './logger.service';
 import { Module } from '@nestjs/common';
-import { LoggerModule } from '@nestcloud/logger';
-import { LoggerService } from "./logger.service";
 
 @Module({
-    imports: [
-        LoggerModule.register(),
-    ],
-    providers: [LoggerService]
+    imports: [LoggerModule.register()],
+    providers: [LoggerService],
 })
-export class AppModule {
-}
+export class AppModule {}

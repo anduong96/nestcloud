@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
-import { ConsulModule } from '@nestcloud/consul';
-import { ConsulServiceModule } from '@nestcloud/consul-service';
-import { NEST_BOOT } from '@nestcloud/common';
+import { BootModule } from '@nestcloud2/boot';
+import { ConsulModule } from '@nestcloud2/consul';
+import { ConsulServiceModule } from '@nestcloud2/consul-service';
+import { NEST_BOOT } from '@nestcloud2/common';
 import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
@@ -15,5 +15,4 @@ import { TerminusModule } from '@nestjs/terminus';
         }),
     ],
 })
-export class AppModule {
-}
+export class AppModule {}

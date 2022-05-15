@@ -3,7 +3,7 @@ import * as winston from 'winston';
 import { LoggerInstance } from 'winston';
 import 'winston-daily-rotate-file';
 import { LoggerOptions } from './interfaces/logger-options.interface';
-import { Boot } from '@nestcloud/boot';
+import { Boot } from '@nestcloud2/boot';
 import { dirname } from 'path';
 import { TransportBuilder } from './transport.builder';
 

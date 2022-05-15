@@ -1,5 +1,5 @@
-import { IRule } from "@nestcloud/consul-loadbalance";
-import { ILoadbalancer, IServer } from "@nestcloud/common";
+import { IRule } from '@nestcloud2/consul-loadbalance';
+import { ILoadbalancer, IServer } from '@nestcloud2/common';
 
 export class CustomRule implements IRule {
     private loadbalancer;
@@ -16,5 +16,4 @@ export class CustomRule implements IRule {
     init(loadbalancer: ILoadbalancer): any {
         this.loadbalancer = loadbalancer;
     }
-
 }

@@ -1,6 +1,7 @@
-import { IInterceptor } from "@nestcloud/feign";
-import { Injectable } from "@nestjs/common";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+
+import { IInterceptor } from '@nestcloud2/feign';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CustomInterceptor implements IInterceptor {
@@ -19,5 +20,4 @@ export class CustomInterceptor implements IInterceptor {
     onResponseError(error: any): any {
         return Promise.reject(error);
     }
-
 }

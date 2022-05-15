@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 import { Rule } from '../interfaces/rule.interface';
-import { ILoadbalancer } from '@nestcloud/common';
+import { ILoadbalancer } from '@nestcloud2/common';
 import { Server } from '../server';
 import { Injectable } from '@nestjs/common';
 
@@ -45,6 +45,6 @@ export class RoundRobinRule implements Rule {
     }
 
     protected incrementAndGetModulo(modulo) {
-        return this.counter = (this.counter + 1) % modulo;
+        return (this.counter = (this.counter + 1) % modulo);
     }
 }

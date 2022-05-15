@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import { IConfig, IEtcd, sleep } from '@nestcloud/common';
+import { IConfig, IEtcd, sleep } from '@nestcloud2/common';
 import * as YAML from 'yamljs';
 import { Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigStore } from './config.store';
@@ -12,12 +12,7 @@ export class EtcdConfig implements IConfig, OnModuleInit {
     private readonly logger = new Logger('ConfigModule');
     private readonly namespace = 'nestcloud-config/';
 
-    constructor(
-        private readonly store: ConfigStore,
-        private readonly client: IEtcd,
-        private readonly name: string,
-    ) {
-    }
+    constructor(private readonly store: ConfigStore, private readonly client: IEtcd, private readonly name: string) {}
 
     async onModuleInit() {
         if (!this.name) {
@@ -25,7 +20,10 @@ export class EtcdConfig implements IConfig, OnModuleInit {
         }
         while (true) {
             try {
-                const data = await this.client.namespace(this.namespace).get(this.name).string();
+                const data = await this.client
+                    .namespace(this.namespace)
+                    .get(this.name)
+                    .string();
                 if (data) {
                     try {
                         this.store.data = YAML.parse(data);
@@ -56,7 +54,10 @@ export class EtcdConfig implements IConfig, OnModuleInit {
         this.store.update(path, value);
         const yamlString = YAML.stringify(this.store.data);
         try {
-            await this.client.namespace(this.namespace).put(this.name).value(yamlString);
+            await this.client
+                .namespace(this.namespace)
+                .put(this.name)
+                .value(yamlString);
         } catch (e) {
             throw new ConfigSyncException(e.message, e.stack);
         }
@@ -67,7 +68,11 @@ export class EtcdConfig implements IConfig, OnModuleInit {
     }
 
     private async createWatcher() {
-        const watcher = await this.client.namespace(this.namespace).watch().key(this.name).create();
+        const watcher = await this.client
+            .namespace(this.namespace)
+            .watch()
+            .key(this.name)
+            .create();
         watcher.on('data', (res: RPC.IWatchResponse) => {
             const event = res.events.filter(evt => !evt.prev_kv)[0];
             if (event) {

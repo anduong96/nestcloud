@@ -1,6 +1,6 @@
 {
-    "name": "@nestcloud/common",
-    "version": "0.6.9",
+    "name": "@nestcloud2/common",
+    "version": "0.7.20",
     "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js",
     "author": "Miaowing <i@zfeng.net>",
     "license": "MIT",
@@ -12,14 +12,14 @@
         "format": "prettier **/**/*.ts --ignore-path ./.prettierignore --write && git status",
         "lint": "tslint -p tsconfig.json -c tslint.json \"packages/**/*.ts\" -e \"*.spec.ts\"",
         "build": "npm run clean && node --max_old_space_size=4096 ./node_modules/.bin/gulp build",
-        "prebuild:dev": "rm -rf node_modules/@nestcloud",
-        "build:dev": "node --max_old_space_size=4096 ./node_modules/.bin/gulp build --dist node_modules/@nestcloud",
-        "prerelease": "gulp copy-misc && node --max_old_space_size=4096 ./node_modules/.bin/gulp build --dist node_modules/@nestcloud",
-        "publish": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --force-publish --access public --exact -m \"chore(@nestcloud) publish %s release\"",
-        "publish:rc": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=rc --access public -m \"chore(@nestcloud) publish %s release\"",
-        "publish:next": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=next --access public --skip-git -m \"chore(@nestcloud) publish %s release\"",
-        "publish:beta": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=beta --access public -m \"chore(@nestcloud) publish %s release\"",
-        "publish:test": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --force-publish --access public --npm-tag=test --skip-git -m \"chore(@nestcloud) publish %s release\""
+        "prebuild:dev": "rm -rf node_modules/@nestcloud2",
+        "build:dev": "node --max_old_space_size=4096 ./node_modules/.bin/gulp build --dist node_modules/@nestcloud2",
+        "prerelease": "gulp copy-misc && node --max_old_space_size=4096 ./node_modules/.bin/gulp build --dist node_modules/@nestcloud2",
+        "publish": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --force-publish --access public --exact -m \"chore(@nestcloud2) publish %s release\"",
+        "publish:rc": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=rc --access public -m \"chore(@nestcloud2) publish %s release\"",
+        "publish:next": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=next --access public --skip-git -m \"chore(@nestcloud2) publish %s release\"",
+        "publish:beta": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --npm-tag=beta --access public -m \"chore(@nestcloud2) publish %s release\"",
+        "publish:test": "npm run prerelease && npm run build && ./node_modules/.bin/lerna publish --force-publish --access public --npm-tag=test --skip-git -m \"chore(@nestcloud2) publish %s release\""
     },
     "devDependencies": {
         "@nestjs/common": "^8.4.5",

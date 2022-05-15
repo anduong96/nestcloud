@@ -1,10 +1,7 @@
 import { Rule } from '..';
-import { ExtendArrayMetadata, applyDecorators } from '@nestcloud/common';
+import { ExtendArrayMetadata, applyDecorators } from '@nestcloud2/common';
 import { RULES_METADATA, GUARDS_METADATA } from '../loadbalance.constants';
 
 export function UseRules(...filters: (Rule | Function)[]) {
-    return applyDecorators(
-        ExtendArrayMetadata(RULES_METADATA, filters),
-        ExtendArrayMetadata(GUARDS_METADATA, filters),
-    );
+    return applyDecorators(ExtendArrayMetadata(RULES_METADATA, filters), ExtendArrayMetadata(GUARDS_METADATA, filters));
 }

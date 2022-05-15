@@ -1,13 +1,14 @@
+import { NEST_BOOT, NEST_CONSUL_LOADBALANCE } from '@nestcloud2/common';
+
+import { BootModule } from '@nestcloud2/boot';
+import { ConsulModule } from '@nestcloud2/consul';
+import { ConsulServiceModule } from '@nestcloud2/consul-service';
+import { FeignModule } from '@nestcloud2/feign';
+import { HealthClient } from './health.client';
+import { HttpClient } from './http.client';
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
-import { ConsulModule } from '@nestcloud/consul';
-import { ConsulServiceModule } from '@nestcloud/consul-service';
-import { FeignModule } from '@nestcloud/feign';
-import { NEST_BOOT, NEST_CONSUL_LOADBALANCE } from '@nestcloud/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { HttpClient } from "./http.client";
-import { TestService } from "./test.service";
-import { HealthClient } from "./health.client";
+import { TestService } from './test.service';
 
 @Module({
     imports: [
@@ -19,7 +20,6 @@ import { HealthClient } from "./health.client";
             useFactory: () => ({ endpoints: [{ url: '/health', healthIndicators: [] }] }),
         }),
     ],
-    providers: [HealthClient, HttpClient, TestService]
+    providers: [HealthClient, HttpClient, TestService],
 })
-export class AppModule {
-}
+export class AppModule {}

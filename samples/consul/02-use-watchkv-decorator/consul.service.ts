@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { WatchKV } from '@nestcloud/consul';
+import { Injectable } from '@nestjs/common';
+import { WatchKV } from '@nestcloud2/consul';
 
 @Injectable()
 export class ConsulService {

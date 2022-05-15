@@ -1,25 +1,25 @@
 {
-  "name": "@nestcloud/logger",
-  "version": "0.7.19",
-  "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
-  "author": "Miaowing <i@zfeng.net>",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nest-cloud/nestcloud.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nest-cloud/nestcloud/issues"
-  },
-  "homepage": "https://github.com/nest-cloud/nestcloud#readme",
-  "dependencies": {
-    "mkdirp": "^0.5.1",
-    "moment": "^2.24.0",
-    "reflect-metadata": "^0.1.12",
-    "winston": "^2.4.2",
-    "winston-daily-rotate-file": "^3.8.0"
-  }
+    "name": "@nestcloud2/logger",
+    "version": "0.7.19",
+    "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
+    "author": "Miaowing <i@zfeng.net>",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nest-cloud/nestcloud.git"
+    },
+    "bugs": {
+        "url": "https://github.com/nest-cloud/nestcloud/issues"
+    },
+    "homepage": "https://github.com/nest-cloud/nestcloud#readme",
+    "dependencies": {
+        "mkdirp": "^0.5.1",
+        "moment": "^2.24.0",
+        "reflect-metadata": "^0.1.12",
+        "winston": "^2.4.2",
+        "winston-daily-rotate-file": "^3.8.0"
+    }
 }

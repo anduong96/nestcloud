@@ -1,11 +1,6 @@
-import {
-    ForbiddenException,
-    InternalServerErrorException,
-    NotFoundException,
-    OnModuleInit,
-} from '@nestjs/common';
+import { ForbiddenException, InternalServerErrorException, NotFoundException, OnModuleInit } from '@nestjs/common';
 import * as HttpProxy from 'http-proxy';
-import { IProxy, ILoadbalance } from '@nestcloud/common';
+import { IProxy, ILoadbalance } from '@nestcloud2/common';
 import { get } from 'lodash';
 
 import { Route } from './interfaces/route.interface';
@@ -27,9 +22,8 @@ export class Proxy implements IProxy, OnModuleInit {
         private readonly config: ProxyConfig,
         private readonly filterRegistry: ProxyFilterRegistry,
         private readonly routeRegistry: ProxyRouteRegistry,
-        private readonly lb: ILoadbalance
-    ) {
-    }
+        private readonly lb: ILoadbalance,
+    ) {}
 
     public async forward(req: Request, res: Response, id: string) {
         const route = this.routeRegistry.getRoute(id);
@@ -72,10 +66,12 @@ export class Proxy implements IProxy, OnModuleInit {
 
     private initProxy() {
         this.proxy = HttpProxy.createProxyServer(
-            Object.assign(this.config.getExtras() || {
-                prependPath: true,
-                ignorePath: true,
-            }),
+            Object.assign(
+                this.config.getExtras() || {
+                    prependPath: true,
+                    ignorePath: true,
+                },
+            ),
         );
         this.proxy.on('error', (err: Error, req: Request, res: Response) => {
             const filters = this.filterRegistry.getRouteFilters(get(req.proxy, 'id'));

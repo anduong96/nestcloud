@@ -7,9 +7,9 @@
 # NestCloud - Boot
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -22,7 +22,7 @@ NestCloud component for getting local configurations and environment values when
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/boot
+$ npm i --save @nestcloud2/boot
 ```
 
 ## Quick Start
@@ -31,12 +31,12 @@ $ npm i --save @nestcloud/boot
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { BootModule } from '@nestcloud/boot';
+import { BootModule } from '@nestcloud2/boot';
 import * as path from 'path';
 
 @Module({
   imports: [
-    BootModule.forRoot({ 
+    BootModule.forRoot({
       filePath: path.resolve(__dirname, 'config.yaml'),
     }),
   ],
@@ -57,12 +57,12 @@ web:
 ## Usage
 
 There are two ways to get your config data,
- 
+
  1. Inject Boot instance:
 
 ```typescript
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { InjectBoot, Boot } from '@nestcloud/boot';
+import { InjectBoot, Boot } from '@nestcloud2/boot';
 
 @Injectable()
 export class ConfigService implements OnModuleInit {
@@ -80,7 +80,7 @@ export class ConfigService implements OnModuleInit {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { BootValue } from '@nestcloud/boot';
+import { BootValue } from '@nestcloud2/boot';
 
 @Injectable()
 export class ConfigService {

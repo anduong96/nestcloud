@@ -1,24 +1,21 @@
-import { Consul } from 'consul';
-import { get } from 'lodash';
 import * as YAML from 'yamljs';
+
+import { IConfig, sleep } from '@nestcloud2/common';
 import { Logger, OnModuleInit } from '@nestjs/common';
-import { IConfig, sleep } from '@nestcloud/common';
+
 import { ConfigStore } from './config.store';
 import { ConfigSyncException } from './exceptions/config-sync.exception';
-import { KVResponse } from '@nestcloud/consul';
+import { Consul } from 'consul';
+import { KVResponse } from '@nestcloud2/consul';
 import { NO_NAME_PROVIDE } from './config.messages';
+import { get } from 'lodash';
 
 export class ConsulConfig implements IConfig, OnModuleInit {
     private readonly retryInterval: 5000;
     private watcher = null;
     private readonly logger = new Logger('ConfigModule');
 
-    constructor(
-        private readonly store: ConfigStore,
-        private readonly consul: Consul,
-        private readonly name: string,
-    ) {
-    }
+    constructor(private readonly store: ConfigStore, private readonly consul: Consul, private readonly name: string) {}
 
     async onModuleInit() {
         if (!this.name) {

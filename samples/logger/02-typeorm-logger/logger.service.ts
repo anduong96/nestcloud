@@ -1,13 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { InjectLogger } from '@nestcloud/logger';
-import { ILogger } from '@nestcloud/common';
+import { Injectable } from '@nestjs/common';
+import { InjectLogger } from '@nestcloud2/logger';
+import { ILogger } from '@nestcloud2/common';
 
 @Injectable()
 export class LoggerService {
-    constructor(
-        @InjectLogger() private readonly logger: ILogger,
-    ) {
-    }
+    constructor(@InjectLogger() private readonly logger: ILogger) {}
 
     log() {
         this.logger.info('hello logger');

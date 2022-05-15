@@ -2,16 +2,12 @@ import { ConsulConfig } from './config.consul';
 import { EtcdConfig } from './config.etcd';
 import { KubernetesConfig } from './config.kubernetes';
 import { NO_DEPS_MODULE_FOUND } from './config.messages';
-import { CONSUL, ETCD, KUBERNETES } from '@nestcloud/common';
+import { CONSUL, ETCD, KUBERNETES } from '@nestcloud2/common';
 import { ConfigOptions } from './interfaces/config-options.interface';
 import { ConfigStore } from './config.store';
 
 export class ConfigFactory {
-    constructor(
-        private readonly store: ConfigStore,
-        private readonly options: ConfigOptions,
-    ) {
-    }
+    constructor(private readonly store: ConfigStore, private readonly options: ConfigOptions) {}
 
     async create(backend: string, ref: any) {
         let client;
@@ -37,8 +33,7 @@ export class ConfigFactory {
 
         try {
             await client.onModuleInit();
-        } catch (e) {
-        }
+        } catch (e) {}
         return client;
     }
 }

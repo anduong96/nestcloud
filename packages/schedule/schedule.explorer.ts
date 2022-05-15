@@ -6,7 +6,7 @@ import { SchedulerType } from './enums/scheduler-type.enum';
 import { SchedulerMetadataAccessor } from './schedule-metadata.accessor';
 import { SchedulerOrchestrator } from './scheduler.orchestrator';
 import { Locker } from './interfaces/locker.interface';
-import { Scanner } from '@nestcloud/common';
+import { Scanner } from '@nestcloud2/common';
 
 @Injectable()
 export class ScheduleExplorer implements OnModuleInit {
@@ -16,8 +16,7 @@ export class ScheduleExplorer implements OnModuleInit {
         private readonly metadataAccessor: SchedulerMetadataAccessor,
         private readonly metadataScanner: MetadataScanner,
         private readonly scanner: Scanner,
-    ) {
-    }
+    ) {}
 
     onModuleInit() {
         this.explore();
@@ -33,10 +32,8 @@ export class ScheduleExplorer implements OnModuleInit {
             if (!instance || typeof instance === 'string') {
                 return;
             }
-            this.metadataScanner.scanFromPrototype(
-                instance,
-                Object.getPrototypeOf(instance),
-                (key: string) => this.lookupSchedulers(instance, key),
+            this.metadataScanner.scanFromPrototype(instance, Object.getPrototypeOf(instance), (key: string) =>
+                this.lookupSchedulers(instance, key),
             );
         });
     }
@@ -51,17 +48,12 @@ export class ScheduleExplorer implements OnModuleInit {
         switch (metadata) {
             case SchedulerType.CRON: {
                 const cronMetadata = this.metadataAccessor.getCronMetadata(methodRef);
-                return this.schedulerOrchestrator.addCron(
-                    methodRef.bind(instance),
-                    cronMetadata!,
-                    lockerInstance,
-                    { ...options! },
-                );
+                return this.schedulerOrchestrator.addCron(methodRef.bind(instance), cronMetadata!, lockerInstance, {
+                    ...options!,
+                });
             }
             case SchedulerType.TIMEOUT: {
-                const timeoutMetadata = this.metadataAccessor.getTimeoutMetadata(
-                    methodRef,
-                );
+                const timeoutMetadata = this.metadataAccessor.getTimeoutMetadata(methodRef);
                 const name = this.metadataAccessor.getSchedulerName(methodRef);
                 return this.schedulerOrchestrator.addTimeout(
                     methodRef.bind(instance),
@@ -72,9 +64,7 @@ export class ScheduleExplorer implements OnModuleInit {
                 );
             }
             case SchedulerType.INTERVAL: {
-                const intervalMetadata = this.metadataAccessor.getIntervalMetadata(
-                    methodRef,
-                );
+                const intervalMetadata = this.metadataAccessor.getIntervalMetadata(methodRef);
                 const name = this.metadataAccessor.getSchedulerName(methodRef);
                 return this.schedulerOrchestrator.addInterval(
                     methodRef.bind(instance),

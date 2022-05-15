@@ -1,4 +1,3 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
@@ -7,9 +6,9 @@
 # NestCloud - Consul
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -22,7 +21,7 @@ A NestCloud component for providing consul api based on [node-consul](https://gi
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/consul consul
+$ npm i --save @nestcloud2/consul consul
 ```
 
 ## Quick Start
@@ -31,13 +30,11 @@ $ npm i --save @nestcloud/consul consul
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { ConsulModule } from '@nestcloud/consul';
-import { BOOT } from '@nestcloud/common';
+import { ConsulModule } from '@nestcloud2/consul';
+import { BOOT } from '@nestcloud2/common';
 
 @Module({
-  imports: [
-    ConsulModule.forRootAsync({ inject: [BOOT] })
-  ],
+    imports: [ConsulModule.forRootAsync({ inject: [BOOT] })],
 })
 export class AppModule {}
 ```
@@ -46,8 +43,8 @@ export class AppModule {}
 
 ```yaml
 consul:
-  host: localhost
-  port: 8500
+    host: localhost
+    port: 8500
 ```
 
 ## Usage
@@ -55,14 +52,11 @@ consul:
 ```typescript
 import { Injectable } from '@nestjs/common';
 import * as Consul from 'consul';
-import { InjectConsul } from '@nestcloud/consul';
+import { InjectConsul } from '@nestcloud2/consul';
 
 @Injectable()
 export class TestService {
-  constructor(
-    @InjectConsul() private readonly consul: Consul
-  ) {
-  }
+    constructor(@InjectConsul() private readonly consul: Consul) {}
 }
 ```
 
@@ -70,12 +64,12 @@ export class TestService {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { WatchKV } from '@nestcloud/consul';
+import { WatchKV } from '@nestcloud2/consul';
 
 @Injectable()
 export class TestService {
-  @WatchKV('test_key', 'yaml', {})
-  private readonly config: any;
+    @WatchKV('test_key', 'yaml', {})
+    private readonly config: any;
 }
 ```
 
@@ -113,16 +107,16 @@ see [node-consul](https://github.com/silas/node-consul)
 
 Inject consul kv to the class attribute, it will update immediately when consul kv update.
 
-| field            | type           | description           |
-| :--------------- | :------------- | :-------------------- |
-| name             | string         | consul key            |
-| options.type     | text json yaml | value type            |
-| options.defaults | any            | default value         |
+| field            | type           | description   |
+| :--------------- | :------------- | :------------ |
+| name             | string         | consul key    |
+| options.type     | text json yaml | value type    |
+| options.defaults | any            | default value |
 
 ## Stay in touch
 
-- Author - [NestCloud](https://github.com/nest-cloud)
+-   Author - [NestCloud](https://github.com/nest-cloud)
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).

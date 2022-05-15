@@ -1,4 +1,4 @@
-import { IBoot, IConfig } from '@nestcloud/common';
+import { IBoot, IConfig } from '@nestcloud2/common';
 import { OnModuleInit } from '@nestjs/common';
 import { LoadbalanceOptions } from './interfaces/loadbalance-options.interface';
 
@@ -11,8 +11,7 @@ export class LoadbalanceConfig implements OnModuleInit {
         private readonly opts: LoadbalanceOptions = {},
         private readonly boot: IBoot,
         private readonly config: IConfig,
-    ) {
-    }
+    ) {}
 
     public getGlobalRule() {
         return this.options.rule || 'RandomRule';
@@ -51,6 +50,5 @@ export class LoadbalanceConfig implements OnModuleInit {
                 this.refs.forEach(ref => ref(this.options));
             });
         }
-
     }
 }

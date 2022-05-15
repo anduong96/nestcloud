@@ -1,4 +1,3 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
@@ -7,9 +6,9 @@
 # NestCloud - Schedule
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -21,55 +20,52 @@ This schedule module is forked from [@nestjs/schedule](https://github.com/nestjs
 
 And add some new features:
 
-* Distributed supports that by using `UseLocker()` decorator.
+-   Distributed supports that by using `UseLocker()` decorator.
 
-* Retryable Job.
+-   Retryable Job.
 
-* Executing job immediately for `Interval` and `Timeout` job.
+-   Executing job immediately for `Interval` and `Timeout` job.
 
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/schedule
+$ npm i --save @nestcloud2/schedule
 ```
 
 ## Usage
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { ScheduleModule } from '@nestcloud/schedule';
+import { ScheduleModule } from '@nestcloud2/schedule';
 
 @Module({
-  imports: [
-    ScheduleModule.forRoot(),
-  ]
+    imports: [ScheduleModule.forRoot()],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
- 
+
 ```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, Timeout, Interval } from '@nestcloud/schedule';
+import { Cron, Timeout, Interval } from '@nestcloud2/schedule';
 
 @Injectable()
 export class TasksService {
-  private readonly logger = new Logger(TasksService.name);
+    private readonly logger = new Logger(TasksService.name);
 
-  @Cron('45 * * * * *')
-  handleCron() {
-    this.logger.debug('Called when the current second is 45');
-  }
-  
-  @Interval(5000)
-  handleInterval() {
-    this.logger.debug('Called every 5 seconds');
-  }
+    @Cron('45 * * * * *')
+    handleCron() {
+        this.logger.debug('Called when the current second is 45');
+    }
 
-  @Timeout(5000)
-  handleTimeout() {
-    this.logger.debug('Called after 5 seconds');
-  }
+    @Interval(5000)
+    handleInterval() {
+        this.logger.debug('Called every 5 seconds');
+    }
+
+    @Timeout(5000)
+    handleTimeout() {
+        this.logger.debug('Called after 5 seconds');
+    }
 }
 ```
 
@@ -79,21 +75,21 @@ export class TasksService {
 
 ```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron } from '@nestcloud/schedule';
+import { Cron } from '@nestcloud2/schedule';
 
 @Injectable()
 export class TasksService {
-  private readonly logger = new Logger(TasksService.name);
+    private readonly logger = new Logger(TasksService.name);
 
-  @Cron({ 
-    rule: '45 * * * * *',
-    start: new Date(Date.now() + 5000),
-    end: new Date(Date.now() + 10000),
-    tz: 'Asia/Shanghai'
-  })
-  handleCron() {
-    this.logger.debug('Called when the time is Sunday 14:30');
-  }
+    @Cron({
+        rule: '45 * * * * *',
+        start: new Date(Date.now() + 5000),
+        end: new Date(Date.now() + 10000),
+        tz: 'Asia/Shanghai',
+    })
+    handleCron() {
+        this.logger.debug('Called when the time is Sunday 14:30');
+    }
 }
 ```
 
@@ -103,16 +99,16 @@ export class TasksService {
 
 ```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron } from '@nestcloud/schedule';
+import { Cron } from '@nestcloud2/schedule';
 
 @Injectable()
 export class TasksService {
-  private readonly logger = new Logger(TasksService.name);
+    private readonly logger = new Logger(TasksService.name);
 
-  @Cron({ hour: 14, minute: 30, dayOfWeek: 0, tz: 'Asia/Shanghai' })
-  handleCron() {
-    this.logger.debug('Called when the current second is 45');
-  }
+    @Cron({ hour: 14, minute: 30, dayOfWeek: 0, tz: 'Asia/Shanghai' })
+    handleCron() {
+        this.logger.debug('Called when the current second is 45');
+    }
 }
 ```
 
@@ -120,25 +116,22 @@ export class TasksService {
 
 ```typescript
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { InjectSchedule, Schedule } from '@nestcloud/schedule';
+import { InjectSchedule, Schedule } from '@nestcloud2/schedule';
 
 @Injectable()
 export class TasksService implements OnModuleInit {
-  private readonly logger = new Logger(TasksService.name);
+    private readonly logger = new Logger(TasksService.name);
 
-  constructor(
-    @InjectSchedule() private readonly schedule: Schedule,
-  ) {
-  }
+    constructor(@InjectSchedule() private readonly schedule: Schedule) {}
 
-  execute() {
-    this.logger.debug('execute dynamic job');
-  }
-  
-  onModuleInit() {
-    this.schedule.createIntervalJob(this.execute.bind(this), 3000, {name: 'test_job'});
-    this.schedule.deleteIntervalJob('test_job');
-  }
+    execute() {
+        this.logger.debug('execute dynamic job');
+    }
+
+    onModuleInit() {
+        this.schedule.createIntervalJob(this.execute.bind(this), 3000, { name: 'test_job' });
+        this.schedule.deleteIntervalJob('test_job');
+    }
 }
 ```
 
@@ -149,23 +142,22 @@ Dynamic job is not support distributed locker now.
 1. Implements `Locker` interface
 
 ```typescript
-import { Locker } from '@nestcloud/schedule';
+import { Locker } from '@nestcloud2/schedule';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TaskLocker implements Locker {
-  private name: string;
+    private name: string;
 
-  init(name: string): void {
-    this.name = name;
-  }
+    init(name: string): void {
+        this.name = name;
+    }
 
-  release(): any {
-  }
+    release(): any {}
 
-  async tryLock(): Promise<boolean> {
-    return true;
-  }
+    async tryLock(): Promise<boolean> {
+        return true;
+    }
 }
 ```
 
@@ -173,21 +165,20 @@ export class TaskLocker implements Locker {
 
 ```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, UseLocker } from '@nestcloud/schedule';
+import { Cron, UseLocker } from '@nestcloud2/schedule';
 import { TaskLocker } from './TaskLocker';
 
 @Injectable()
 export class TasksService {
-  private readonly logger = new Logger(TasksService.name);
+    private readonly logger = new Logger(TasksService.name);
 
-  @Cron('45 * * * * *')
-  @UseLocker(TaskLocker)
-  handleCron() {
-    this.logger.debug('Called when the current second is 45');
-  }
+    @Cron('45 * * * * *')
+    @UseLocker(TaskLocker)
+    handleCron() {
+        this.logger.debug('Called when the current second is 45');
+    }
 }
 ```
-
 
 ## API
 
@@ -204,7 +195,7 @@ Import schedule module.
 Dynamic create a timeout job.
 
 | field     | type     | required | description    |
-| ----------| -------- | -------- | -------------- |
+| --------- | -------- | -------- | -------------- |
 | methodRef | Function | true     | job method     |
 | timeout   | number   | true     | milliseconds   |
 | options   |          | false    | see decorators |
@@ -214,7 +205,7 @@ Dynamic create a timeout job.
 Dynamic create a interval job.
 
 | field     | type     | required | description    |
-| ----------| -------- | -------- | -------------- |
+| --------- | -------- | -------- | -------------- |
 | methodRef | Function | true     | job method     |
 | timeout   | number   | true     | milliseconds   |
 | options   |          | false    | see decorators |
@@ -223,11 +214,11 @@ Dynamic create a interval job.
 
 Dynamic create a cron job.
 
-| field     | type                                         | required | description                                   |
-| --------- | -------------------------------------------- | -------- | --------------------------------------------- |
-| rule      | Date string number CronObject CronObjLiteral | true     | the cron rule                                 |
-| methodRef | Function                                     | true     | job method                                    |
-| options   |                                              | false    | see decorators                                |
+| field     | type                                         | required | description    |
+| --------- | -------------------------------------------- | -------- | -------------- |
+| rule      | Date string number CronObject CronObjLiteral | true     | the cron rule  |
+| methodRef | Function                                     | true     | job method     |
+| options   |                                              | false    | see decorators |
 
 #### deleteTimeoutJob\(name: string\)
 
@@ -259,41 +250,45 @@ Get all cron jobs
 
 Schedule a cron job.
 
-| field           | type                                         | required | description                                   |
-| --------------- | -------------------------------------------- | -------- | --------------------------------------------- |
-| rule            | Date string number CronObject CronObjLiteral | true     | The cron rule                                 |
-| rule.dayOfWeek  | number                                       | true     | Timezone                                      |
-| options.name    | string                                       | false    | The unique job key                            |
-| options.retries | number                                       | false    | the max retry count, default is -1 not retry  |
-| options.retry   | number                                       | false    | the retry interval, default is 5000           |
+| field           | type                                         | required | description                                  |
+| --------------- | -------------------------------------------- | -------- | -------------------------------------------- |
+| rule            | Date string number CronObject CronObjLiteral | true     | The cron rule                                |
+| rule.dayOfWeek  | number                                       | true     | Timezone                                     |
+| options.name    | string                                       | false    | The unique job key                           |
+| options.retries | number                                       | false    | the max retry count, default is -1 not retry |
+| options.retry   | number                                       | false    | the retry interval, default is 5000          |
 
 [CronObject CronObjLiteral](https://github.com/nest-cloud/nestcloud/tree/master/packages/schedule/interfaces/cron-options.interface)]
 
 ### Interval(timeout: number): MethodDecorator
+
 ### Interval(name: string, timeout: number): MethodDecorator
+
 ### Interval(name: string, timeout: number, options?: IntervalOptions): MethodDecorator
 
 Schedule a interval job.
 
-| field             | type    | required | description                                   |
-| ----------------- | ------- | -------- | --------------------------------------------- |
-| timeout           | number  | true     | milliseconds                                  |
-| options.retries   | number  | false    | the max retry count, default is -1 not retry  |
-| options.retry     | number  | false    | the retry interval, default is 5000           |
-| options.immediate | boolean | false    | executing job immediately                     |
+| field             | type    | required | description                                  |
+| ----------------- | ------- | -------- | -------------------------------------------- |
+| timeout           | number  | true     | milliseconds                                 |
+| options.retries   | number  | false    | the max retry count, default is -1 not retry |
+| options.retry     | number  | false    | the retry interval, default is 5000          |
+| options.immediate | boolean | false    | executing job immediately                    |
 
 ### Timeout(timeout: number): MethodDecorator
+
 ### Timeout(name: string, timeout: number): MethodDecorator
+
 ### Timeout(name: string, timeout: number, options?: TimeoutOptions): MethodDecorator
 
 Schedule a timeout job.
 
-| field             | type    | required | description                                   |
-| ----------------- | ------- | -------- | --------------------------------------------- |
-| timeout           | number  | true     | milliseconds                                  |
-| options.retries   | number  | false    | the max retry count, default is -1 not retry  |
-| options.retry     | number  | false    | the retry interval, default is 5000           |
-| options.immediate | boolean | false    | executing job immediately                     |
+| field             | type    | required | description                                  |
+| ----------------- | ------- | -------- | -------------------------------------------- |
+| timeout           | number  | true     | milliseconds                                 |
+| options.retries   | number  | false    | the max retry count, default is -1 not retry |
+| options.retry     | number  | false    | the retry interval, default is 5000          |
+| options.immediate | boolean | false    | executing job immediately                    |
 
 ### InjectSchedule(): PropertyDecorator
 
@@ -305,8 +300,8 @@ Set a distributed locker for job.
 
 ## Stay in touch
 
-- Author - [NestCloud](https://github.com/nest-cloud)
+-   Author - [NestCloud](https://github.com/nest-cloud)
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).

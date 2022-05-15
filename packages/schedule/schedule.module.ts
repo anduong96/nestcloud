@@ -5,7 +5,7 @@ import { ScheduleExplorer } from './schedule.explorer';
 import { SchedulerOrchestrator } from './scheduler.orchestrator';
 import { SchedulerRegistry } from './scheduler.registry';
 import { ScheduleWrapper } from './schedule.wrapper';
-import { Scanner, SCHEDULE } from '@nestcloud/common';
+import { Scanner, SCHEDULE } from '@nestcloud2/common';
 import { Schedule } from './schedule';
 
 @Module({

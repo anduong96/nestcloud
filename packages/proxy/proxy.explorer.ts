@@ -3,7 +3,7 @@ import { DiscoveryService } from '@nestjs/core';
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { MetadataScanner } from '@nestjs/core/metadata-scanner';
 import { ProxyMetadataAccessor } from './proxy-metadata.accessor';
-import { Scanner } from '@nestcloud/common';
+import { Scanner } from '@nestcloud2/common';
 import { ProxyFilterRegistry } from './proxy-filter.registry';
 import { Filter } from './interfaces/filter.interface';
 
@@ -15,8 +15,7 @@ export class ProxyExplorer implements OnModuleInit {
         private readonly metadataScanner: MetadataScanner,
         private readonly scanner: Scanner,
         private readonly filterRegistry: ProxyFilterRegistry,
-    ) {
-    }
+    ) {}
 
     onModuleInit() {
         this.explore();

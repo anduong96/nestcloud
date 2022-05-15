@@ -1,4 +1,3 @@
-
 [travis-image]: https://api.travis-ci.org/nest-cloud/nestcloud.svg?branch=master
 [travis-url]: https://travis-ci.org/nest-cloud/nestcloud
 [linux-image]: https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux
@@ -7,9 +6,9 @@
 # NestCloud - Http
 
 <p align="center">
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud/core.svg" alt="NPM Version"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud/core.svg" alt="Package License"/></a>
-    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud/core.svg" alt="NPM Downloads"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/v/@nestcloud2/core.svg" alt="NPM Version"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/l/@nestcloud2/core.svg" alt="Package License"/></a>
+    <a href="https://www.npmjs.com/~nestcloud" target="_blank"><img src="https://img.shields.io/npm/dm/@nestcloud2/core.svg" alt="NPM Downloads"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://travis-ci.org/nest-cloud/nestcloud.svg?branch=master" alt="Travis"/></a>
     <a href="https://travis-ci.org/nest-cloud/nestcloud" target="_blank"><img src="https://img.shields.io/travis/nest-cloud/nestcloud/master.svg?label=linux" alt="Linux"/></a>
     <a href="https://coveralls.io/github/nest-cloud/nestcloud?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nest-cloud/nestcloud/badge.svg?branch=master" alt="Coverage"/></a>
@@ -22,7 +21,7 @@ This is a [Nest](https://github.com/nestjs/nest) module for writing nestjs http 
 ## Installation
 
 ```bash
-$ npm i --save @nestcloud/http
+$ npm i --save @nestcloud2/http
 ```
 
 ## Quick Start
@@ -31,70 +30,61 @@ $ npm i --save @nestcloud/http
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestcloud/http';
+import { HttpModule } from '@nestcloud2/http';
 
 @Module({
-  imports: [
-      HttpModule.forRoot(),
-  ],
+    imports: [HttpModule.forRoot()],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 ### Configurations
 
 ```yaml
 http:
-  axios:
-    timeout: 1000
+    axios:
+        timeout: 1000
 ```
 
 ## Usage
 
 ```typescript
-import { Injectable } from "@nestjs/common";
-import { Get, Query, Post, Body, Param, Put, Delete } from "@nestcloud/http";
+import { Injectable } from '@nestjs/common';
+import { Get, Query, Post, Body, Param, Put, Delete } from '@nestcloud2/http';
 
 @Injectable()
 export class UserClient {
     @Get('http://test.com/users')
-    getUsers(@Query('role') role: string) {
-    }
-    
+    getUsers(@Query('role') role: string) {}
+
     @Post('http://test.com/users')
-    createUser(@Body('user') user: any) {
-    }
-    
+    createUser(@Body('user') user: any) {}
+
     @Put('http://test.com/users/:userId')
-    updateUser(@Param('userId') userId: string, @Body('user') user: any) {
-    }
-    
+    updateUser(@Param('userId') userId: string, @Body('user') user: any) {}
+
     @Delete('http://test.com/users/:userId')
-    deleteUser(@Param('userId') userId: string) {
-    }
+    deleteUser(@Param('userId') userId: string) {}
 }
 ```
 
 ### Loadbalance
 
 ```typescript
-import { Injectable } from "@nestjs/common";
-import { Loadbalanced, Get, Query } from "@nestcloud/http";
+import { Injectable } from '@nestjs/common';
+import { Loadbalanced, Get, Query } from '@nestcloud2/http';
 
 @Injectable()
-// enable loadbalance supports, need import @nestcloud/loadbalance module at first.
+// enable loadbalance supports, need import @nestcloud2/loadbalance module at first.
 @Loadbalanced('user-service')
 export class UserClient {
     @Get('/users')
-    getUsers(@Query('role') role: string) {
-    }
-    
+    getUsers(@Query('role') role: string) {}
+
     @Get('http://test.com/users')
     // disable loadbalance supports.
     @Loadbalanced(false)
-    getRemoteUsers() {
-    }
+    getRemoteUsers() {}
 }
 ```
 
@@ -102,7 +92,7 @@ export class UserClient {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { Interceptor } from "@nestcloud/http";
+import { Interceptor } from '@nestcloud2/http';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 @Injectable()
@@ -111,15 +101,15 @@ export class AddHeaderInterceptor implements Interceptor {
         request.headers['x-service'] = 'service-name';
         return request;
     }
-    
+
     onResponse(response: AxiosResponse): AxiosResponse {
         return response;
     }
-    
+
     onRequestError(error: any): any {
         return Promise.reject(error);
     }
-    
+
     onResponseError(error: any): any {
         return Promise.reject(error);
     }
@@ -127,16 +117,15 @@ export class AddHeaderInterceptor implements Interceptor {
 ```
 
 ```typescript
-import { Injectable } from "@nestjs/common";
-import { Get, UseInterceptors } from "@nestcloud/http";
-import { AddHeaderInterceptor } from "./middlewares/AddHeaderInterceptor";
+import { Injectable } from '@nestjs/common';
+import { Get, UseInterceptors } from '@nestcloud2/http';
+import { AddHeaderInterceptor } from './middlewares/AddHeaderInterceptor';
 
 @Injectable()
 @UseInterceptors(AddHeaderInterceptor)
 export class ArticleClient {
     @Get('https://api.apiopen.top/recommendPoetry')
-    getArticles() {
-    }
+    getArticles() {}
 }
 ```
 
@@ -146,11 +135,9 @@ examples:
 @UseInterceptors(Interceptor1)
 @UseInterceptors(Interceptor2)
 export class Client {
-
     @UseInterceptors(Interceptor3)
     @UseInterceptors(Interceptor4)
-    getArticles() {
-    }
+    getArticles() {}
 }
 ```
 
@@ -169,39 +156,35 @@ interceptor1 response
 
 ### Brakes
 
-Import `@nestcloud/brakes` module at first.
+Import `@nestcloud2/brakes` module at first.
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { BrakesModule } from '@nestcloud/brakes';
+import { BrakesModule } from '@nestcloud2/brakes';
 
 @Module({
-  imports: [
-      BrakesModule.forRoot(),
-  ],
+    imports: [BrakesModule.forRoot()],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 Write a fallback class.
 
 ```typescript
-import { Fallback } from '@nestcloud/brakes';
+import { Fallback } from '@nestcloud2/brakes';
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserFallback implements Fallback {
-  config() {
-    return {};
-  }
+    config() {
+        return {};
+    }
 
-  fallback(...params) {
-    throw new BadRequestException('fallback invoke');
-  }
+    fallback(...params) {
+        throw new BadRequestException('fallback invoke');
+    }
 
-  healthCheck() {
-  }
+    healthCheck() {}
 }
 ```
 
@@ -209,16 +192,15 @@ Use fallback.
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { Get } from '@nestcloud/http';
-import { UseFallback } from '@nestcloud/brakes';
+import { Get } from '@nestcloud2/http';
+import { UseFallback } from '@nestcloud2/brakes';
 import { UserFallback } from './UserFallback';
 
 @Injectable()
 @UseFallback(UserFallback)
 export class UserClient {
-  @Get('/users')
-  getUsers(): any {
-  }
+    @Get('/users')
+    getUsers(): any {}
 }
 ```
 
@@ -280,8 +262,8 @@ Use interceptor, supports dynamic import and inject.
 
 ## Stay in touch
 
-- Author - [NestCloud](https://github.com/nest-cloud)
+-   Author - [NestCloud](https://github.com/nest-cloud)
 
 ## License
 
-  NestCloud is [MIT licensed](LICENSE).
+NestCloud is [MIT licensed](LICENSE).
