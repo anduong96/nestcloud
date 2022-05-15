@@ -1,17 +1,15 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
 import { DiscoveryService, NestContainer } from '@nestjs/core';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
-import { STATIC_CONTEXT } from '@nestjs/core/injector/constants';
 import { Module } from '@nestjs/core/injector/module';
+import { STATIC_CONTEXT } from '@nestjs/core/injector/constants';
 
 @Injectable()
 export class Scanner implements OnModuleInit {
     private container: NestContainer;
 
-    constructor(
-        private readonly discoveryService: DiscoveryService,
-    ) {
-    }
+    constructor(private readonly discoveryService: DiscoveryService) {}
 
     onModuleInit(): any {
         this.container = this.findContainer();
@@ -23,8 +21,8 @@ export class Scanner implements OnModuleInit {
         }
         const modules = this.container.getModules().values();
         for (const module of modules) {
-            const instanceWrapper = module.injectables.get(metaType.name);
-            if (instanceWrapper && module.injectables.has(metaType.name) && instanceWrapper.metatype === metaType) {
+            const instanceWrapper = module.injectables.get(metaType);
+            if (instanceWrapper) {
                 const instanceWrapper: InstanceWrapper = module.injectables.get(metaType.name);
                 if (instanceWrapper) {
                     const instanceHost = instanceWrapper.getInstanceByContextId(STATIC_CONTEXT);
@@ -115,9 +113,7 @@ export class Scanner implements OnModuleInit {
 
     public findProviderByClassName(module: Module, className: string): boolean {
         const { providers } = module;
-        const hasProvider = [...providers.keys()].some(
-            provider => provider === className,
-        );
+        const hasProvider = [...providers.keys()].some(provider => provider === className);
         return hasProvider;
     }
 }
