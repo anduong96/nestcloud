@@ -1,6 +1,6 @@
 {
     "name": "@nestcloud2/kubernetes",
-    "version": "0.7.17",
+    "version": "0.8.0",
     "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
     "author": "Miaowing <i@zfeng.net>",
     "license": "MIT",
