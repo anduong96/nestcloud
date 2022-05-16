@@ -23,7 +23,7 @@ export class Scanner implements OnModuleInit {
         for (const module of modules) {
             const instanceWrapper = module.injectables.get(metaType);
             if (instanceWrapper) {
-                const instanceWrapper: InstanceWrapper = module.injectables.get(metaType.name);
+                const instanceWrapper: InstanceWrapper = module.injectables.get(metaType);
                 if (instanceWrapper) {
                     const instanceHost = instanceWrapper.getInstanceByContextId(STATIC_CONTEXT);
                     if (instanceHost.isResolved && instanceHost.instance) {
@@ -83,32 +83,6 @@ export class Scanner implements OnModuleInit {
             }
         }
         return '';
-    }
-
-    public findInjectableInstance<T extends Record<string, any>>(
-        context: string,
-        metaTypeOrName: Function | string,
-    ): InstanceWrapper | undefined {
-        const collection = this.container.getModules();
-        const module = collection.get(context);
-        if (!module) {
-            return undefined;
-        }
-        const injectables = module.injectables;
-        return injectables.get(typeof metaTypeOrName === 'string' ? metaTypeOrName : metaTypeOrName.name);
-    }
-
-    public findProviderInstance<T extends Record<string, any>>(
-        context: string,
-        metaTypeOrName: Function | string,
-    ): InstanceWrapper | undefined {
-        const collection = this.container.getModules();
-        const module = collection.get(context);
-        if (!module) {
-            return undefined;
-        }
-        const providers = module.providers;
-        return providers.get(typeof metaTypeOrName === 'string' ? metaTypeOrName : metaTypeOrName.name);
     }
 
     public findProviderByClassName(module: Module, className: string): boolean {
