@@ -24,3 +24,4 @@ export * from './interfaces/kubernetes.interface';
 export * from './interfaces/etcd.interface';
 export * from './interfaces/key-value-options.interface';
 export * from './interfaces/key-value-metadata.interface';
+export * from './interfaces/memcached.interface';

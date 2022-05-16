@@ -7,6 +7,7 @@ const deleteEmpty = require('delete-empty');
 const packages = {
     common: ts.createProject('packages/common/tsconfig.json'),
     boot: ts.createProject('packages/boot/tsconfig.json'),
+    core: ts.createProject('packages/core/tsconfig.json'),
     consul: ts.createProject('packages/consul/tsconfig.json'),
     etcd: ts.createProject('packages/etcd/tsconfig.json'),
     config: ts.createProject('packages/config/tsconfig.json'),
@@ -27,19 +28,16 @@ const dist = distId < 0 ? source : process.argv[distId + 1];
 
 gulp.task('default', function() {
     modules.forEach(module => {
-        gulp.watch(
-            [`${source}/${module}/**/*.ts`, `${source}/${module}/*.ts`],
-            [module],
-        );
+        gulp.watch([`${source}/${module}/**/*.ts`, `${source}/${module}/*.ts`], [module]);
     });
 });
-
 
 gulp.task('copy-misc', function() {
     return gulp
         .src(['LICENSE', '.npmignore'])
         .pipe(gulp.dest(`${source}/common`))
         .pipe(gulp.dest(`${source}/boot`))
+        .pipe(gulp.dest(`${source}/core`))
         .pipe(gulp.dest(`${source}/etcd`))
         .pipe(gulp.dest(`${source}/consul`))
         .pipe(gulp.dest(`${source}/config`))
@@ -56,12 +54,9 @@ gulp.task('copy-misc', function() {
 
 gulp.task('clean:output', function() {
     return gulp
-        .src(
-            [`${source}/**/*.js`, `${source}/**/*.d.ts`, `${source}/**/*.js.map`],
-            {
-                read: false,
-            },
-        )
+        .src([`${source}/**/*.js`, `${source}/**/*.d.ts`, `${source}/**/*.js.map`], {
+            read: false,
+        })
         .pipe(clean());
 });
 
@@ -87,9 +82,7 @@ modules.forEach(module => {
             .src()
             .pipe(sourcemaps.init())
             .pipe(packages[module]())
-            .pipe(
-                sourcemaps.mapSources(sourcePath => './' + sourcePath.split('/').pop()),
-            )
+            .pipe(sourcemaps.mapSources(sourcePath => './' + sourcePath.split('/').pop()))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(`${dist}/${module}`));
     });
