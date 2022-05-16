@@ -1,6 +1,6 @@
 import * as YAML from 'yamljs';
 
-import { IConfig, IKubernetes, sleep } from '@nestcloud2/common';
+import { IConfig, IKubernetes, sleep } from '../common';
 import { Logger, OnModuleInit } from '@nestjs/common';
 
 import { ConfigStore } from './config.store';

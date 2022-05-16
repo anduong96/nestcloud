@@ -1,4 +1,4 @@
 import { Inject } from '@nestjs/common';
-import { SERVICE } from '@nestcloud2/common';
+import { SERVICE } from '../../common';
 
 export const InjectService = () => Inject(SERVICE);

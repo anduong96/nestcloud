@@ -1,4 +1,4 @@
-import { IConsul } from '@nestcloud2/common';
+import { IConsul } from '../common';
 
 export class Watcher {
     private watcher;

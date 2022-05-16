@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { applyDecorators, ExtendMetadata } from '@nestcloud2/common';
+import { applyDecorators, ExtendMetadata } from '../../common';
 import { CONFIG_VALUE } from '../config.constants';
 
 export function ConfigValue(name?: string, defaults?: any): PropertyDecorator {

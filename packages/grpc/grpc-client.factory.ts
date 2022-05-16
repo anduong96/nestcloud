@@ -1,6 +1,6 @@
-import { GrpcClient } from './grpc-client';
 import { ClientOptions } from './interfaces/client-options.interface';
-import { ILoadbalance } from '@nestcloud2/common';
+import { GrpcClient } from './grpc-client';
+import { ILoadbalance } from '../common';
 
 export class GrpcClientFactory {
     private static cache = new Map<string, GrpcClient>();

@@ -1,7 +1,8 @@
-import { LoggerService } from '@nestjs/common';
+import { Cache, LOGGER } from '../common';
+
 import { Logger } from './logger';
 import { LoggerOptions } from './interfaces/logger-options.interface';
-import { Cache, LOGGER } from '@nestcloud2/common';
+import { LoggerService } from '@nestjs/common';
 
 export class NestLogger implements LoggerService {
     private readonly logger;

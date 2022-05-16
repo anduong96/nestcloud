@@ -1,5 +1,7 @@
 import 'reflect-metadata';
-import { applyDecorators, ExtendMetadata } from '@nestcloud2/common';
+
+import { ExtendMetadata, applyDecorators } from '../../common';
+
 import { BOOT_VALUE } from '../boot.constants';
 
 export function BootValue(name?: string, defaults?: string): PropertyDecorator {

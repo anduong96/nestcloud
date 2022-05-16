@@ -1,7 +1,10 @@
 {
-  "extends": "./../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": "./"
-  },
-  "include": ["*.ts", "**/*.ts"]
+    "extends": "./../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@nestcloud2/*": ["packages/*"]
+        }
+    },
+    "include": ["*.ts", "**/*.ts"]
 }

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { OPTIONS_METADATA } from '../http.constants';
-import { applyDecorators, AssignMetadata } from '@nestcloud2/common/decorators';
+import { applyDecorators, AssignMetadata } from '../../common/decorators';
 
 export function ResponseType(type: string) {
     return applyDecorators(AssignMetadata(OPTIONS_METADATA, { responseType: type }));

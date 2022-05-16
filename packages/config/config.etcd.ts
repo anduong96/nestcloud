@@ -1,11 +1,13 @@
-import { get } from 'lodash';
-import { IConfig, IEtcd, sleep } from '@nestcloud2/common';
+import * as RPC from 'etcd3/lib/rpc';
 import * as YAML from 'yamljs';
+
+import { IConfig, IEtcd, sleep } from '../common';
 import { Logger, OnModuleInit } from '@nestjs/common';
+
 import { ConfigStore } from './config.store';
 import { ConfigSyncException } from './exceptions/config-sync.exception';
-import * as RPC from 'etcd3/lib/rpc';
 import { NO_NAME_PROVIDE } from './config.messages';
+import { get } from 'lodash';
 
 export class EtcdConfig implements IConfig, OnModuleInit {
     private readonly retryInterval = 5000;

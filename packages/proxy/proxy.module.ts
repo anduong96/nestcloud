@@ -1,14 +1,15 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { ProxyOptions } from './interfaces/proxy-options.interface';
-import { Proxy } from './proxy';
-import { ProxyExplorer } from './proxy.explorer';
-import { ProxyFilterRegistry } from './proxy-filter.registry';
-import { ProxyRouteRegistry } from './proxy-route.registry';
-import { ProxyMetadataAccessor } from './proxy-metadata.accessor';
+import { BOOT, CONFIG, IBoot, IConfig, ILoadbalance, LOADBALANCE, PROXY, Scanner } from '../common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
 import { DiscoveryModule } from '@nestjs/core';
-import { Scanner, BOOT, CONFIG, IBoot, IConfig, PROXY, ILoadbalance, LOADBALANCE } from '@nestcloud2/common';
-import { ProxyFilterRegister } from './proxy-filter.register';
+import { Proxy } from './proxy';
 import { ProxyConfig } from './proxy.config';
+import { ProxyExplorer } from './proxy.explorer';
+import { ProxyFilterRegister } from './proxy-filter.register';
+import { ProxyFilterRegistry } from './proxy-filter.registry';
+import { ProxyMetadataAccessor } from './proxy-metadata.accessor';
+import { ProxyOptions } from './interfaces/proxy-options.interface';
+import { ProxyRouteRegistry } from './proxy-route.registry';
 
 @Global()
 @Module({

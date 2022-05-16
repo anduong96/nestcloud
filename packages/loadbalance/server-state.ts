@@ -1,4 +1,4 @@
-import { IServerState } from '@nestcloud2/common';
+import { IServerState } from '../common';
 
 export const PASSING = 'passing';
 

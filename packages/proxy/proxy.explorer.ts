@@ -1,11 +1,12 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
+
 import { DiscoveryService } from '@nestjs/core';
+import { Filter } from './interfaces/filter.interface';
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { MetadataScanner } from '@nestjs/core/metadata-scanner';
-import { ProxyMetadataAccessor } from './proxy-metadata.accessor';
-import { Scanner } from '@nestcloud2/common';
 import { ProxyFilterRegistry } from './proxy-filter.registry';
-import { Filter } from './interfaces/filter.interface';
+import { ProxyMetadataAccessor } from './proxy-metadata.accessor';
+import { Scanner } from '../common';
 
 @Injectable()
 export class ProxyExplorer implements OnModuleInit {

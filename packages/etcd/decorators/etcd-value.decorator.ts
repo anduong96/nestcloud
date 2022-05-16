@@ -1,4 +1,4 @@
-import { KeyValueOptions, applyDecorators, ExtendMetadata } from '@nestcloud2/common';
+import { KeyValueOptions, applyDecorators, ExtendMetadata } from '../../common';
 import { ETCD_KEY_VALUE } from '../etcd.constants';
 
 export function EtcdValue(name: string, options?: KeyValueOptions): PropertyDecorator {

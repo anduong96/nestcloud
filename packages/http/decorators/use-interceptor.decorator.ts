@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { ExtendArrayMetadata, GUARDS_METADATA, applyDecorators } from '@nestcloud2/common';
+import { ExtendArrayMetadata, GUARDS_METADATA, applyDecorators } from '../../common';
 
 import { INTERCEPTOR_METADATA } from '../http.constants';
 import { Interceptor } from '../interfaces/interceptor.interface';

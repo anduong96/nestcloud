@@ -1,6 +1,6 @@
 import * as Consul from 'consul';
 
-import { IServiceServer, PASSING } from '@nestcloud2/common';
+import { IServiceServer, PASSING } from '../common';
 import { toList, toValueList } from './utils/array.util';
 
 import { Watcher } from './service-watcher.consul';

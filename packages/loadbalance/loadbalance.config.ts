@@ -1,6 +1,7 @@
-import { IBoot, IConfig } from '@nestcloud2/common';
-import { OnModuleInit } from '@nestjs/common';
+import { IBoot, IConfig } from '../common';
+
 import { LoadbalanceOptions } from './interfaces/loadbalance-options.interface';
+import { OnModuleInit } from '@nestjs/common';
 
 export class LoadbalanceConfig implements OnModuleInit {
     private CONFIG_PREFIX = 'loadbalance';

@@ -1,6 +1,7 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
 import { AsyncBrakesOptions, BrakesOptions } from './interfaces/brakes-options.interface';
-import { IBoot, BOOT, BRAKES } from '@nestcloud2/common';
+import { BOOT, BRAKES, IBoot } from '../common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
 import { BRAKES_OPTIONS_PROVIDER } from './brakes.constants';
 import { Brakes } from './brakes.class';
 import { BrakesFactory } from './brakes.factory';

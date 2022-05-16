@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { RESPONSE, RESPONSE_HEADER, RESPONSE_BODY } from '../http.constants';
-import { applyDecorators, SetMetadata } from '@nestcloud2/common/decorators';
+import { applyDecorators, SetMetadata } from '../../common/decorators';
 
 export function Response() {
     return applyDecorators(SetMetadata(RESPONSE, RESPONSE));

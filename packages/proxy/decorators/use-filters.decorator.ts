@@ -1,5 +1,5 @@
 import { Filter } from '..';
-import { ExtendArrayMetadata, applyDecorators } from '@nestcloud2/common';
+import { ExtendArrayMetadata, applyDecorators } from '../../common';
 import { FILTER_METADATA, GUARDS_METADATA } from '../proxy.constants';
 
 export function UseFilters(...filters: (Filter | Function)[]) {

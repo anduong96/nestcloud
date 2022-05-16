@@ -1,13 +1,14 @@
-import { OnModuleDestroy, OnModuleInit, Logger } from '@nestjs/common';
 import * as md5encode from 'blueimp-md5';
-import { IConsul, IService, IServiceServer, sleep } from '@nestcloud2/common';
-import { get } from 'lodash';
 
-import { ServiceOptions } from './interfaces/service-options.interface';
-import { ServiceCheck } from './interfaces/service-check.interface';
-import { getIPAddress } from './utils/os.util';
+import { IConsul, IService, IServiceServer, sleep } from '../common';
+import { Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+
 import { ConnectService } from './interfaces/connect-service.interface';
+import { ServiceCheck } from './interfaces/service-check.interface';
+import { ServiceOptions } from './interfaces/service-options.interface';
 import { ServiceStore } from './service.store';
+import { get } from 'lodash';
+import { getIPAddress } from './utils/os.util';
 
 export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
     private store: ServiceStore;

@@ -1,5 +1,5 @@
 import { AsyncEtcdOptions, EtcdOptions } from './interfaces/etcd-options.interface';
-import { BOOT, ETCD, IBoot } from '@nestcloud2/common';
+import { BOOT, ETCD, IBoot } from '../common';
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { Etcd3, IOptions } from 'etcd3';
 

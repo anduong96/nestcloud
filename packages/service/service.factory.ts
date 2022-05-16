@@ -1,4 +1,4 @@
-import { CONSUL, ETCD } from '@nestcloud2/common';
+import { CONSUL, ETCD } from '../common';
 
 import { ConsulService } from './service.consul';
 import { EtcdService } from './service.etcd';

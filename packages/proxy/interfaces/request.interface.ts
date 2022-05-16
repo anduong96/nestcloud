@@ -1,5 +1,5 @@
 import { IncomingMessage } from 'http';
-import { IServer } from '@nestcloud2/common';
+import { IServer } from '../../common';
 
 export interface Request extends IncomingMessage {
     proxy?: {

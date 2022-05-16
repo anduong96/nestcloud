@@ -1,7 +1,8 @@
-import { Module, DynamicModule, Global, Logger } from '@nestjs/common';
-import { LOGGER } from '@nestcloud2/common';
-import { TypeormLogger } from './typeorm-logger';
+import { DynamicModule, Global, Logger, Module } from '@nestjs/common';
+
+import { LOGGER } from '../common';
 import { TYPEORM_LOGGER } from './logger.constants';
+import { TypeormLogger } from './typeorm-logger';
 
 @Global()
 @Module({})

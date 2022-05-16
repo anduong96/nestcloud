@@ -1,6 +1,6 @@
 import { AXIOS_INSTANCE_PROVIDER, HTTP_OPTIONS_PROVIDER } from './http.constants';
 import { AsyncHttpOptions, HttpOptions } from './interfaces/http-options.interface';
-import { BOOT, CONFIG, HTTP, IBoot, IConfig, Scanner } from '@nestcloud2/common';
+import { BOOT, CONFIG, HTTP, IBoot, IConfig, Scanner } from '../common';
 import { DynamicModule, Global, Module } from '@nestjs/common';
 
 import { DiscoveryModule } from '@nestjs/core';

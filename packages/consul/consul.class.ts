@@ -11,7 +11,7 @@ import {
     Session,
     Status,
     Watch,
-} from '@nestcloud2/common';
+} from '../common';
 
 export class Consul implements IConsul {
     acl: Acl;

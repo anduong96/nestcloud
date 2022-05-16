@@ -1,4 +1,4 @@
-import { IServiceServer } from '@nestcloud2/common';
+import { IServiceServer } from '../common';
 
 export class ServiceServer implements IServiceServer {
     id: string;

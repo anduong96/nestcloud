@@ -1,9 +1,10 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { ServiceOptions } from './interfaces/service-options.interface';
+import { BOOT, CONFIG, CONSUL, ETCD, IBoot, IConfig, IConsul, IEtcd, SERVICE } from '../common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
+import { NO_DEPS_MODULE_FOUND } from './service.messages';
 import { SERVICE_OPTIONS_PROVIDER } from './service.constants';
 import { ServiceFactory } from './service.factory';
-import { BOOT, CONFIG, IBoot, IConfig, CONSUL, ETCD, IConsul, IEtcd, SERVICE } from '@nestcloud2/common';
-import { NO_DEPS_MODULE_FOUND } from './service.messages';
+import { ServiceOptions } from './interfaces/service-options.interface';
 import { ServiceStore } from './service.store';
 
 @Global()

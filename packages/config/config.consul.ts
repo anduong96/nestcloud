@@ -1,12 +1,12 @@
 import * as YAML from 'yamljs';
 
-import { IConfig, sleep } from '@nestcloud2/common';
+import { IConfig, sleep } from '../common';
 import { Logger, OnModuleInit } from '@nestjs/common';
 
 import { ConfigStore } from './config.store';
 import { ConfigSyncException } from './exceptions/config-sync.exception';
 import { Consul } from 'consul';
-import { KVResponse } from '@nestcloud2/consul';
+import { KVResponse } from '../consul';
 import { NO_NAME_PROVIDE } from './config.messages';
 import { get } from 'lodash';
 

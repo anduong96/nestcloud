@@ -1,7 +1,8 @@
-import { ClientOptions } from './interfaces/client-options.interface';
+import { ILoadbalance, IServer } from '../common';
+
 import { ClientGrpcProxy } from '@nestjs/microservices/client';
-import { ILoadbalance, IServer } from '@nestcloud2/common';
-import { GrpcDelegate } from '@nestcloud2/loadbalance';
+import { ClientOptions } from './interfaces/client-options.interface';
+import { GrpcDelegate } from '../loadbalance';
 
 export class GrpcClient {
     private readonly options: ClientOptions;

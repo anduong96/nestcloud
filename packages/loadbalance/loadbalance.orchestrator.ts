@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Scanner, ILoadbalance, IServer } from '@nestcloud2/common';
+import { Scanner, ILoadbalance, IServer } from '../common';
 import { ChooseMetadata } from './interfaces/choose-metadata.interface';
 import { InjectLoadbalance } from './decorators/inject-loadbalance.decorator';
 

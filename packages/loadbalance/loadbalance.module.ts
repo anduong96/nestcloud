@@ -1,17 +1,18 @@
-import { DynamicModule, Global, Module } from '@nestjs/common';
 import { AsyncLoadbalanceOptions, LoadbalanceOptions } from './interfaces/loadbalance-options.interface';
+import { BOOT, CONFIG, IBoot, IConfig, LOADBALANCE, Scanner } from '../common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
 import { AXIOS_INSTANCE_PROVIDER } from './loadbalance.constants';
-import { Scanner, BOOT, CONFIG, IBoot, IConfig, LOADBALANCE } from '@nestcloud2/common';
 import { DiscoveryModule } from '@nestjs/core';
 import { Loadbalance } from './loadbalance';
 import { LoadbalanceChecker } from './loadbalance.checker';
-import axios from 'axios';
+import { LoadbalanceConfig } from './loadbalance.config';
+import { LoadbalanceExplorer } from './loadbalance.explorer';
 import { LoadbalanceMetadataAccessor } from './loadbalance-metadata.accessor';
 import { LoadbalanceOrchestrator } from './loadbalance.orchestrator';
-import { LoadbalanceExplorer } from './loadbalance.explorer';
-import { LoadbalanceRuleRegistry } from './loadbalance-rule.registry';
 import { LoadbalanceRuleRegister } from './loadbalance-rule.register';
-import { LoadbalanceConfig } from './loadbalance.config';
+import { LoadbalanceRuleRegistry } from './loadbalance-rule.registry';
+import axios from 'axios';
 
 @Global()
 @Module({

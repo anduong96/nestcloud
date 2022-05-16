@@ -1,11 +1,13 @@
-import { get } from 'lodash';
-import { IService, IServiceServer, IEtcd, sleep } from '@nestcloud2/common';
-import { ServiceOptions } from './interfaces/service-options.interface';
-import { Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import * as YAML from 'yamljs';
+
+import { IEtcd, IService, IServiceServer, sleep } from '../common';
+import { Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+
+import { ServiceOptions } from './interfaces/service-options.interface';
 import { ServiceServer } from './service.server';
-import { getIPAddress } from './utils/os.util';
 import { Watcher } from 'etcd3/lib/watch';
+import { get } from 'lodash';
+import { getIPAddress } from './utils/os.util';
 
 export class EtcdService implements IService, OnModuleInit, OnModuleDestroy {
     // nestcloud-service/service__${serviceName}__${ip}__${port}

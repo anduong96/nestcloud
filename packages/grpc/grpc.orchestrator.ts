@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
-import { Scanner, ILoadbalance, LOADBALANCE } from '@nestcloud2/common';
+import { Scanner, ILoadbalance, LOADBALANCE } from '../common';
 import { GrpcClientMetadata } from './interfaces/grpc-client-metadata.interface';
 import { ClientOptions } from './interfaces/client-options.interface';
 import { GrpcServiceMetadata } from './interfaces/grpc-service-metadata.interface';

@@ -1,9 +1,10 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { Scanner, GRPC, LOADBALANCE } from '@nestcloud2/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+import { GRPC, LOADBALANCE, Scanner } from '../common';
+
 import { DiscoveryModule } from '@nestjs/core';
+import { GrpcExplorer } from './grpc.explorer';
 import { GrpcMetadataAccessor } from './grpc-metadata.accessor';
 import { GrpcOrchestrator } from './grpc.orchestrator';
-import { GrpcExplorer } from './grpc.explorer';
 
 @Global()
 @Module({

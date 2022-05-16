@@ -1,4 +1,4 @@
-import { applyDecorators, KeyValueOptions, ExtendMetadata } from '@nestcloud2/common';
+import { applyDecorators, KeyValueOptions, ExtendMetadata } from '../../common';
 import { CONSUL_KEY_VALUE } from '../consul.constants';
 
 export function KeyValue(name: string, options?: KeyValueOptions): PropertyDecorator {

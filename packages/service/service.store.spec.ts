@@ -1,7 +1,8 @@
-import { ServiceStore } from './service.store';
 import * as Consul from 'consul';
+
+import { IServiceServer } from '../common';
+import { ServiceStore } from './service.store';
 import { expect } from 'chai';
-import { IServiceServer } from '@nestcloud2/common';
 
 describe('Consul Service Store', () => {
     let consul: Consul;

@@ -1,19 +1,20 @@
-import { ForbiddenException, InternalServerErrorException, NotFoundException, OnModuleInit } from '@nestjs/common';
 import * as HttpProxy from 'http-proxy';
-import { IProxy, ILoadbalance } from '@nestcloud2/common';
-import { get } from 'lodash';
 
-import { Route } from './interfaces/route.interface';
-import { Request } from './interfaces/request.interface';
-import { Response } from './interfaces/response.interface';
 import { ClientRequest, IncomingMessage } from 'http';
-import { ProxyErrorException } from './exceptions/proxy-error.exception';
-import { HEADER_TIMEOUT } from './proxy.constants';
 import { ERROR_RESPONSE_FILTER, LOADBALANCE_FILTER } from './proxy.constants';
+import { ForbiddenException, InternalServerErrorException, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { ILoadbalance, IProxy } from '../common';
+
+import { HEADER_TIMEOUT } from './proxy.constants';
+import { ProxyConfig } from './proxy.config';
+import { ProxyErrorException } from './exceptions/proxy-error.exception';
 import { ProxyFilterRegistry } from './proxy-filter.registry';
 import { ProxyRouteRegistry } from './proxy-route.registry';
+import { Request } from './interfaces/request.interface';
+import { Response } from './interfaces/response.interface';
+import { Route } from './interfaces/route.interface';
 import { URL } from 'url';
-import { ProxyConfig } from './proxy.config';
+import { get } from 'lodash';
 
 export class Proxy implements IProxy, OnModuleInit {
     private proxy: HttpProxy;

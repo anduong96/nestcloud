@@ -1,12 +1,13 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { SCHEDULE, Scanner } from '../common';
+
 import { DiscoveryModule } from '@nestjs/core';
-import { SchedulerMetadataAccessor } from './schedule-metadata.accessor';
+import { Schedule } from './schedule';
 import { ScheduleExplorer } from './schedule.explorer';
+import { ScheduleWrapper } from './schedule.wrapper';
+import { SchedulerMetadataAccessor } from './schedule-metadata.accessor';
 import { SchedulerOrchestrator } from './scheduler.orchestrator';
 import { SchedulerRegistry } from './scheduler.registry';
-import { ScheduleWrapper } from './schedule.wrapper';
-import { Scanner, SCHEDULE } from '@nestcloud2/common';
-import { Schedule } from './schedule';
 
 @Module({
     imports: [DiscoveryModule],

@@ -1,7 +1,7 @@
 /**
  * @see https://github.com/silas/node-consul
  */
-import { IConsulOptions } from '@nestcloud2/common';
+import { IConsulOptions } from '../../common';
 
 export interface ConsulOptions extends IConsulOptions {
     host?: string;

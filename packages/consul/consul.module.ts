@@ -1,12 +1,13 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
 import { AsyncConsulOptions, ConsulOptions } from './interfaces/consul-options.interface';
+import { BOOT, CONSUL, IBoot, Scanner } from '../common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
 import { CONSUL_OPTIONS_PROVIDER } from './consul.constants';
-import { Scanner, IBoot, BOOT, CONSUL } from '@nestcloud2/common';
 import { Consul } from './consul.class';
 import { ConsulExplorer } from './consul.explorer';
+import { ConsulMetadataAccessor } from './consul-metadata.accessor';
 import { ConsulOrchestrator } from './consul.orchestrator';
 import { DiscoveryModule } from '@nestjs/core';
-import { ConsulMetadataAccessor } from './consul-metadata.accessor';
 
 @Global()
 @Module({

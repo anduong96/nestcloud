@@ -1,5 +1,5 @@
 import { ServiceServer } from '../service.server';
-import { IServiceServer, CRITICAL, PASSING, WARNING } from '@nestcloud2/common';
+import { IServiceServer, CRITICAL, PASSING, WARNING } from '../../common';
 import { get } from 'lodash';
 
 export function handleConsulNodes(nodes): IServiceServer[] {

@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnApplicationShutdown } from '@nestjs/common';
-import { KeyValueOptions, KeyValueMetadata, setValue } from '@nestcloud2/common';
+import { KeyValueOptions, KeyValueMetadata, setValue } from '../common';
 import { Etcd } from './etcd';
 import { InjectEtcd } from './decorators/inject-etcd.decorator';
 import { ETCD_KEY_VALUE_ERROR } from './etcd.messages';

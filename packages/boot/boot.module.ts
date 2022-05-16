@@ -1,14 +1,15 @@
-import { Module, DynamicModule, Global } from '@nestjs/common';
-import { BootOptions } from './interfaces/boot-options.interface';
-import { Boot } from './boot.class';
-import { BootFileLoader } from './boot-file.loader';
-import { BOOT } from '@nestcloud2/common';
-import { BootStore } from './boot.store';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+
+import { BOOT } from '../common';
 import { BOOT_OPTIONS_PROVIDER } from './boot.constants';
-import { DiscoveryModule } from '@nestjs/core';
-import { BootMetadataAccessor } from './boot-metadata.accessor';
-import { BootOrchestrator } from './boot.orchestrator';
+import { Boot } from './boot.class';
 import { BootExplorer } from './boot.explorer';
+import { BootFileLoader } from './boot-file.loader';
+import { BootMetadataAccessor } from './boot-metadata.accessor';
+import { BootOptions } from './interfaces/boot-options.interface';
+import { BootOrchestrator } from './boot.orchestrator';
+import { BootStore } from './boot.store';
+import { DiscoveryModule } from '@nestjs/core';
 
 @Global()
 @Module({

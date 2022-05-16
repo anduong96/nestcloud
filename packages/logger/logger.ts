@@ -1,11 +1,13 @@
+import 'winston-daily-rotate-file';
+
 import * as fs from 'fs';
 import * as winston from 'winston';
+
+import { Boot } from '../boot';
 import { LoggerInstance } from 'winston';
-import 'winston-daily-rotate-file';
 import { LoggerOptions } from './interfaces/logger-options.interface';
-import { Boot } from '@nestcloud2/boot';
-import { dirname } from 'path';
 import { TransportBuilder } from './transport.builder';
+import { dirname } from 'path';
 
 export class Logger {
     private readonly basePath: string;

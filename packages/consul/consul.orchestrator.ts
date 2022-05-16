@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnApplicationShutdown } from '@nestjs/common';
-import { Scanner, Watch, KeyValueOptions, KeyValueMetadata, setValue } from '@nestcloud2/common';
+import { Scanner, Watch, KeyValueOptions, KeyValueMetadata, setValue } from '../common';
 import { Consul } from './consul.class';
 import { KVResponse } from './interfaces/consul-kv-response.interface';
 import { CONSUL_WATCH_ERROR } from './consul.messages';

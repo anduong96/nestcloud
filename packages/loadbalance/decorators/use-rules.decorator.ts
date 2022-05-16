@@ -1,5 +1,5 @@
 import { Rule } from '..';
-import { ExtendArrayMetadata, applyDecorators } from '@nestcloud2/common';
+import { ExtendArrayMetadata, applyDecorators } from '../../common';
 import { RULES_METADATA, GUARDS_METADATA } from '../loadbalance.constants';
 
 export function UseRules(...filters: (Rule | Function)[]) {

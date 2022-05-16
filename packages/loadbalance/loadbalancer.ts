@@ -1,7 +1,8 @@
-import { ILoadbalancer, IServer } from '@nestcloud2/common';
+import { ILoadbalancer, IServer } from '../common';
+
+import { Rule } from './interfaces/rule.interface';
 import { Server } from './server';
 import { ServerState } from './server-state';
-import { Rule } from './interfaces/rule.interface';
 
 export class Loadbalancer implements ILoadbalancer {
     constructor(

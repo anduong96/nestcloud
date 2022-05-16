@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
 import { CONSUL_KEY_VALUE } from './consul.constants';
-import { KeyValueMetadata } from '@nestcloud2/common';
+import { Injectable } from '@nestjs/common';
+import { KeyValueMetadata } from '../common';
+import { Reflector } from '@nestjs/core';
 
 @Injectable()
 export class ConsulMetadataAccessor {

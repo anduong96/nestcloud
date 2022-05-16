@@ -1,6 +1,7 @@
-import { get, set, isArray, isString, isObject } from 'lodash';
-import { objectToMap } from '@nestcloud2/common';
+import { get, isArray, isObject, isString, set } from 'lodash';
+
 import { compile } from 'handlebars';
+import { objectToMap } from '../common';
 
 export class ConfigStore {
     private _data: any = {};

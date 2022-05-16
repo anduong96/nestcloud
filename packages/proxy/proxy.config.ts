@@ -1,6 +1,7 @@
-import { ProxyOptions } from './interfaces/proxy-options.interface';
-import { IBoot, IConfig } from '@nestcloud2/common';
+import { IBoot, IConfig } from '../common';
+
 import { OnModuleInit } from '@nestjs/common';
+import { ProxyOptions } from './interfaces/proxy-options.interface';
 
 export class ProxyConfig implements OnModuleInit {
     private CONFIG_PREFIX = 'proxy';

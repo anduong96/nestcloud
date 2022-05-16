@@ -1,4 +1,6 @@
 import 'reflect-metadata';
+
+import { BRAKES_METADATA, getMetadata } from '../common';
 import {
     INTERCEPTOR_METADATA,
     METHOD_METADATA,
@@ -8,10 +10,10 @@ import {
     RESPONSE,
     RESPONSE_HEADER,
 } from './http.constants';
-import { getMetadata, BRAKES_METADATA } from '@nestcloud2/common';
+
 import { Injectable } from '@nestjs/common';
+import { LOADBALANCE_SERVICE } from '../common';
 import { ParamsMetadata } from './interfaces/params-metadata.interface';
-import { LOADBALANCE_SERVICE } from '@nestcloud2/common';
 
 @Injectable()
 export class HttpMetadataAccessor {

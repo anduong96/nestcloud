@@ -1,6 +1,6 @@
 import { ETCD_KEY_VALUE } from './etcd.constants';
 import { Injectable } from '@nestjs/common';
-import { KeyValueMetadata } from '@nestcloud2/common';
+import { KeyValueMetadata } from '../common';
 import { Reflector } from '@nestjs/core';
 
 @Injectable()

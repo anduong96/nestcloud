@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { PATH_METADATA, METHOD_METADATA, OPTIONS_METADATA } from '../http.constants';
 import { AxiosRequestConfig } from 'axios';
-import { applyDecorators, SetMetadata, AssignMetadata } from '@nestcloud2/common';
+import { applyDecorators, SetMetadata, AssignMetadata } from '../../common';
 
 export const Get = (path: string, options?: AxiosRequestConfig): MethodDecorator =>
     createMappingDecorator('GET', path, options);

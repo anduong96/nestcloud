@@ -7,7 +7,7 @@ import {
     Scanner,
     SERVICE,
     stringToKeyValue,
-} from '@nestcloud2/common';
+} from '../common';
 import { ServiceOptions } from './interfaces/service-options.interface';
 import { Loadbalancer } from './loadbalancer';
 import { Server } from './server';

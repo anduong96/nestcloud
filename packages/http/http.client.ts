@@ -5,14 +5,14 @@ import {
     InternalServerErrorException,
     ServiceUnavailableException,
 } from '@nestjs/common';
-import { ILoadbalance } from '@nestcloud2/common';
+import { ILoadbalance } from '../common';
 import { Interceptor } from './interfaces/interceptor.interface';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import * as LbModule from '@nestcloud2/loadbalance';
+import * as LbModule from '../loadbalance';
 import { HttpOptions } from './interfaces/http-options.interface';
 import { AXIOS_INSTANCE_PROVIDER, HTTP_OPTIONS_PROVIDER } from './http.constants';
-import { Brakes, Fallback } from '@nestcloud2/brakes';
+import { Brakes, Fallback } from '../brakes';
 
 @Injectable()
 export class HttpClient {
@@ -106,7 +106,7 @@ export class HttpClient {
     public async doRequest(options: AxiosRequestConfig): Promise<AxiosResponse | any> {
         let response: AxiosResponse;
         if (this.service && this.lb) {
-            const module: typeof LbModule = require('@nestcloud2/loadbalance');
+            const module: typeof LbModule = require('../loadbalance');
             const server = this.lb.choose(this.service);
             if (!server) {
                 throw new InternalServerErrorException(`No available server can handle this request`);

@@ -1,16 +1,17 @@
-import { IBoot, IConsul, IKubernetes, IEtcd } from '@nestcloud2/common';
-import { BOOT, CONFIG, CONSUL, KUBERNETES, ETCD } from '@nestcloud2/common';
+import { BOOT, CONFIG, CONSUL, ETCD, KUBERNETES } from '../common';
 import { DynamicModule, Global, Module } from '@nestjs/common';
+import { IBoot, IConsul, IEtcd, IKubernetes } from '../common';
+
 import { CONFIG_OPTIONS_PROVIDER } from './config.constants';
-import { ConfigFactory } from './config.factory';
-import { DiscoveryModule } from '@nestjs/core';
-import { IConfig } from '@nestcloud2/common';
-import { NO_DEPS_MODULE_FOUND } from './config.messages';
-import { ConfigOptions } from './interfaces/config-options.interface';
-import { ConfigStore } from './config.store';
-import { ConfigMetadataAccessor } from './config-metadata.accessor';
-import { ConfigOrchestrator } from './config.orchestrator';
 import { ConfigExplorer } from './config.explorer';
+import { ConfigFactory } from './config.factory';
+import { ConfigMetadataAccessor } from './config-metadata.accessor';
+import { ConfigOptions } from './interfaces/config-options.interface';
+import { ConfigOrchestrator } from './config.orchestrator';
+import { ConfigStore } from './config.store';
+import { DiscoveryModule } from '@nestjs/core';
+import { IConfig } from '../common';
+import { NO_DEPS_MODULE_FOUND } from './config.messages';
 
 @Global()
 @Module({

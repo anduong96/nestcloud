@@ -1,6 +1,7 @@
-import { get, isString, isArray, isObject } from 'lodash';
-import { objectToMap } from '@nestcloud2/common';
+import { get, isArray, isObject, isString } from 'lodash';
+
 import { compile } from 'handlebars';
+import { objectToMap } from '../common';
 
 export class BootStore {
     private _data: any;

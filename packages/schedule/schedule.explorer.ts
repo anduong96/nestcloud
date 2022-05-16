@@ -1,12 +1,13 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
+
 import { DiscoveryService } from '@nestjs/core';
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
+import { Locker } from './interfaces/locker.interface';
 import { MetadataScanner } from '@nestjs/core/metadata-scanner';
-import { SchedulerType } from './enums/scheduler-type.enum';
+import { Scanner } from '../common';
 import { SchedulerMetadataAccessor } from './schedule-metadata.accessor';
 import { SchedulerOrchestrator } from './scheduler.orchestrator';
-import { Locker } from './interfaces/locker.interface';
-import { Scanner } from '@nestcloud2/common';
+import { SchedulerType } from './enums/scheduler-type.enum';
 
 @Injectable()
 export class ScheduleExplorer implements OnModuleInit {
