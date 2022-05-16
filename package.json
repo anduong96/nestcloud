@@ -6,8 +6,7 @@
     "license": "MIT",
     "private": false,
     "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
+        "access": "public"
     },
     "scripts": {
         "coverage": "nyc report --reporter=text-lcov | coveralls",
