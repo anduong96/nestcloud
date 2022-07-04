@@ -1,6 +1,7 @@
-import { ClientOptions } from './interfaces/client-options.interface';
-import { ClientGrpcProxy } from '@nestjs/microservices/client';
 import { ILoadbalance, IServer } from '@nestcloud2/common';
+
+import { ClientGrpcProxy } from '@nestjs/microservices/client';
+import { ClientOptions } from './interfaces/client-options.interface';
 import { GrpcDelegate } from '@nestcloud2/loadbalance';
 
 export class GrpcClient {
@@ -47,6 +48,7 @@ export class GrpcClient {
                     url: `${node.address}:${node.port}`,
                     package: this.options.package,
                     protoPath: this.options.protoPath,
+                    loader: this.options.loader,
                 });
                 this.proxyCache.set(node.id, proxy);
             }

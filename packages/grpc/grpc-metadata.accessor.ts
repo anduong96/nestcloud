@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GrpcClientMetadata } from './interfaces/grpc-client-metadata.interface';
 import { GRPC_CLIENT, GRPC_SERVICE } from './grpc.constants';
@@ -6,10 +6,7 @@ import { GrpcServiceMetadata } from './interfaces/grpc-service-metadata.interfac
 
 @Injectable()
 export class GrpcMetadataAccessor {
-    constructor(
-        private readonly reflector: Reflector,
-    ) {
-    }
+    constructor(@Inject(Reflector.name) private readonly reflector: Reflector) {}
 
     getGrpcClients(target: Function): GrpcClientMetadata[] | undefined {
         return this.reflector.get(GRPC_CLIENT, target);

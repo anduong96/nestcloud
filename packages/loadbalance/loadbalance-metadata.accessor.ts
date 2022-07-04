@@ -1,14 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { LOADBALANCE_CHOOSE, RULES_METADATA } from './loadbalance.constants';
 import { ChooseMetadata } from './interfaces/choose-metadata.interface';
 
 @Injectable()
 export class LoadbalanceMetadataAccessor {
-    constructor(
-        private readonly reflector: Reflector,
-    ) {
-    }
+    constructor(@Inject(Reflector.name) private readonly reflector: Reflector) {}
 
     getChooses(target: Function): ChooseMetadata[] | undefined {
         try {

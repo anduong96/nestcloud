@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { SchedulerType } from './enums/scheduler-type.enum';
 import { IntervalMetadata } from './interfaces/interval-metadata.interface';
@@ -10,17 +10,15 @@ import {
     SCHEDULE_CRON_OPTIONS,
     SCHEDULE_INTERVAL_OPTIONS,
     SCHEDULE_TIMEOUT_OPTIONS,
-    SCHEDULE_LOCKER, SCHEDULER_OPTIONS,
+    SCHEDULE_LOCKER,
+    SCHEDULER_OPTIONS,
 } from './schedule.constants';
 import { TimeoutOptions } from './interfaces/timeout-options.interface';
 import { IntervalOptions } from './interfaces/interval-options.interface';
 
 @Injectable()
 export class SchedulerMetadataAccessor {
-    constructor(
-        private readonly reflector: Reflector,
-    ) {
-    }
+    constructor(@Inject(Reflector.name) private readonly reflector: Reflector) {}
 
     getSchedulerType(target: Function): SchedulerType | undefined {
         return this.reflector.get(SCHEDULER_TYPE, target);

@@ -1,6 +1,5 @@
-export interface ClientOptions {
+import { GrpcOptions } from '@nestjs/microservices/interfaces';
+
+export interface ClientOptions extends Pick<GrpcOptions['options'], 'protoPath' | 'loader' | 'package' | 'url'> {
     service?: string;
-    url?: string;
-    package: string;
-    protoPath: string;
 }

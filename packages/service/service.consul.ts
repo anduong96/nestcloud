@@ -1,13 +1,14 @@
-import { OnModuleDestroy, OnModuleInit, Logger } from '@nestjs/common';
 import * as md5encode from 'blueimp-md5';
-import { IConsul, IService, IServiceServer, sleep } from '@nestcloud2/common';
-import { get } from 'lodash';
 
-import { ServiceOptions } from './interfaces/service-options.interface';
-import { ServiceCheck } from './interfaces/service-check.interface';
-import { getIPAddress } from './utils/os.util';
+import { IConsul, IService, IServiceServer, sleep } from '@nestcloud2/common';
+import { Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+
 import { ConnectService } from './interfaces/connect-service.interface';
+import { ServiceCheck } from './interfaces/service-check.interface';
+import { ServiceOptions } from './interfaces/service-options.interface';
 import { ServiceStore } from './service.store';
+import { get } from 'lodash';
+import { getIPAddress } from './utils/os.util';
 
 export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
     private store: ServiceStore;
@@ -34,6 +35,8 @@ export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
     private readonly status: string;
     private readonly includes: string[];
     private readonly connect: ConnectService;
+    private readonly grpc: string;
+    private readonly grpcUseTLS: boolean;
 
     constructor(private readonly consul: IConsul, options: ServiceOptions) {
         this.discoveryHost = get(options, 'discoveryHost', getIPAddress());
@@ -59,6 +62,8 @@ export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
         this.status = get(options, 'healthCheck.status');
         this.includes = get(options, 'service.includes', []);
         this.store = new ServiceStore(this.consul, this.includes);
+        this.grpc = get(options, 'healthCheck.grpc');
+        this.grpcUseTLS = get(options, 'healthCheck.grpcUseTLS', true);
     }
 
     async init() {
@@ -113,8 +118,13 @@ export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
             status: this.status,
         } as ServiceCheck;
 
-        if (this.tcp) {
-            check.tcp = this.tcp === 'true' ? `${this.discoveryHost}:${this.servicePort}` : this.tcp;
+        const target = `${this.discoveryHost}:${this.servicePort}`;
+
+        if (this.grpc) {
+            check.grpc = target;
+            check.grpcUseTls = this.grpcUseTLS === true;
+        } else if (this.tcp) {
+            check.tcp = this.tcp === 'true' ? target : this.tcp;
         } else if (this.script) {
             check.script = this.script;
         } else if (this.dockerContainerId) {
@@ -127,7 +137,7 @@ export class ConsulService implements OnModuleInit, OnModuleDestroy, IService {
         }
 
         return {
-            id: this.serviceId || md5encode(`${this.discoveryHost}:${this.servicePort}`),
+            id: this.serviceId || md5encode(target),
             name: this.serviceName,
             address: this.discoveryHost,
             port: parseInt(this.servicePort + ''),

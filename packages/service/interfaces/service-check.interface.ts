@@ -10,4 +10,6 @@ export interface ServiceCheck {
     notes?: string;
     status?: string;
     deregistercriticalserviceafter?: string;
+    grpc?: string;
+    grpcUseTls?: boolean;
 }
