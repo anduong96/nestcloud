@@ -96,12 +96,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nest-cloud/nestcloud.git"
+        "url": "git+https://github.com/anduong96/nestcloud2.git"
     },
     "bugs": {
-        "url": "https://github.com/nest-cloud/nestcloud/issues"
+        "url": "https://github.com/anduong96/nestcloud2/issues"
     },
-    "homepage": "https://github.com/nest-cloud/nestcloud#readme",
+    "homepage": "https://github.com/anduong96/nestcloud2#readme",
     "nyc": {
         "include": [
             "packages/**/*.ts"
