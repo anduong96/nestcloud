@@ -34,13 +34,13 @@ describe('Consul Service Store', () => {
 
     it(`service.onModuleInit()`, async () => {
         await service.onModuleInit();
-        await new Promise(resolve => setTimeout(() => resolve(), 500));
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
         expect(service.getServiceServers('my-test-service').length).equal(1);
     });
 
     it(`service.onModuleDestroy()`, async () => {
         await service.onModuleDestroy();
-        await new Promise(resolve => setTimeout(() => resolve(), 500));
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
         expect(service.getServiceServers('my-test-service').length).equal(0);
     });
 

@@ -16,17 +16,17 @@ import { LOADBALANCE_SERVICE } from '@nestcloud2/common';
 @Injectable()
 export class HttpMetadataAccessor {
     getUrl(instance: Function, target: Function): string | undefined {
-        return getMetadata(PATH_METADATA, target, instance.constructor);
+        return getMetadata<string>(PATH_METADATA, target, instance.constructor);
     }
 
     getMethod(instance: Function, target: Function): string | undefined {
-        return getMetadata(METHOD_METADATA, target, instance.constructor);
+        return getMetadata<string>(METHOD_METADATA, target, instance.constructor);
     }
 
     getResponseConfig(instance: Function, target: Function): string | undefined {
-        let responseType = getMetadata(RESPONSE, target, instance.constructor);
+        let responseType = getMetadata<string>(RESPONSE, target, instance.constructor);
         if (!responseType) {
-            responseType = getMetadata(RESPONSE_HEADER, target, instance.constructor);
+            responseType = getMetadata<string>(RESPONSE_HEADER, target, instance.constructor);
         }
         return responseType;
     }

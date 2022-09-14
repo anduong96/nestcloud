@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as winston from 'winston';
-import { LoggerInstance } from 'winston';
+import { Logger as WinstonLogger } from 'winston';
 import 'winston-daily-rotate-file';
 import { LoggerOptions } from './interfaces/logger-options.interface';
 import { Boot } from '@nestcloud2/boot';
@@ -10,7 +10,7 @@ import { TransportBuilder } from './transport.builder';
 export class Logger {
     private readonly basePath: string;
     private readonly options: LoggerOptions;
-    private logger: LoggerInstance;
+    private logger: WinstonLogger;
 
     constructor(options: LoggerOptions) {
         if (options.filePath) {
@@ -32,7 +32,7 @@ export class Logger {
         this.init();
     }
 
-    getLogger(): LoggerInstance {
+    getLogger(): WinstonLogger {
         return this.logger;
     }
 

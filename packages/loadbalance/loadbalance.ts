@@ -74,7 +74,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
     }
 
     private updateServices(services: string[], force?: boolean) {
-        services.forEach(async service => {
+        services.forEach(async (service) => {
             const nodes = this.service.getServiceServers(service);
             if (!force) {
                 if (!service || this.loadbalancers.has(service)) {
@@ -85,7 +85,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
             const ruleName = this.config.getRule(service);
             let rule: Rule = this.loadbalanceRuleRegistry.getRule(ruleName);
             if (!rule) {
-                await new Promise((resolve, reject) => {
+                await new Promise<void>((resolve, reject) => {
                     this.loadbalanceRuleRegistry.watch(() => {
                         rule = this.loadbalanceRuleRegistry.getRule(ruleName);
                         if (rule) {
@@ -106,7 +106,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
 
     private createLoadbalancer(serviceName: string, nodes: IServiceServer[], rule: Rule) {
         const loadbalancer: Loadbalancer = this.loadbalancers.get(serviceName);
-        const servers = nodes.map(node => {
+        const servers = nodes.map((node) => {
             const server = new Server(node.address, node.port);
             server.name = node.name;
             if (loadbalancer && loadbalancer.getServer(server.id)) {
@@ -125,7 +125,7 @@ export class Loadbalance implements ILoadbalance, OnModuleInit {
     private pingServers() {
         this.loadbalancers.forEach((loadbalancer, service) => {
             const servicesOptions = this.config.getServiceOptions();
-            const options: ServiceOptions = servicesOptions.filter(rule => rule.name === service)[0];
+            const options: ServiceOptions = servicesOptions.filter((rule) => rule.name === service)[0];
             this.loadbalanceChecker.pingServer(loadbalancer, options);
         });
     }

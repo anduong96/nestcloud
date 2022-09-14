@@ -53,12 +53,12 @@ export class Proxy implements IProxy, OnModuleInit {
 
     private initRoutes() {
         const routes: Route[] = this.config.getRoutes();
-        routes.forEach(route => {
+        routes.forEach((route) => {
             if (!route.filters) {
                 route.filters = [];
             }
             route.filters.push({ name: ERROR_RESPONSE_FILTER }, { name: LOADBALANCE_FILTER });
-            route.filters = route.filters.filter(filter => filter.name);
+            route.filters = route.filters.filter((filter) => filter.name);
             this.routeRegistry.addRoute(route.id, route);
             this.filterRegistry.addRouteFilters(route.id, route.filters);
         });
@@ -73,13 +73,13 @@ export class Proxy implements IProxy, OnModuleInit {
                 },
             ),
         );
-        this.proxy.on('error', (err: Error, req: Request, res: Response) => {
+        this.proxy.on('error', (err, req: Request, res) => {
             const filters = this.filterRegistry.getRouteFilters(get(req.proxy, 'id'));
             for (let i = 0; i < filters.length; i++) {
                 const [routeFilter, filter] = filters[i];
                 if (filter.error) {
                     req.proxy.parameters = routeFilter.parameters;
-                    filter.error(err as ProxyErrorException, req, res);
+                    filter.error(err as ProxyErrorException, req, res as Response);
                 }
             }
         });
