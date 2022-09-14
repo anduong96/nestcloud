@@ -1,20 +1,17 @@
 import { HttpException } from '@nestjs/common';
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { ServerCriticalException } from '../exceptions/server-critical.exception';
 import { Server } from '../server';
 
 export class HttpDelegate {
-    constructor(
-        private readonly server: Server
-    ) {
-    }
+    constructor(private readonly server: Server) {}
 
     async send(http: AxiosInstance, config: AxiosRequestConfig): Promise<AxiosResponse> {
         if (config.url && config.url.charAt(0) !== '/') {
             config.url = '/' + config.url;
         }
-        config.url = `http://${ this.server.address }:${ this.server.port }${ config.url }`;
+        config.url = `http://${this.server.address}:${this.server.port}${config.url}`;
         this.server.state.incrementServerActiveRequests();
         this.server.state.incrementTotalRequests();
 
@@ -31,17 +28,18 @@ export class HttpDelegate {
             this.server.state.decrementServerActiveRequests();
             return response;
         } catch (e) {
+            const error = e as AxiosError;
             this.server.state.decrementServerActiveRequests();
-            if (e.response) {
-                throw new HttpException(e.response.data, e.response.status);
-            } else if (e.request) {
+            if (error.response) {
+                throw new HttpException(error.response.data, error.response.status);
+            } else if (error.request) {
                 this.server.state.incrementServerFailureCounts();
-                this.server.state.noteConnectionFailedTime(e.message);
-                throw new ServerCriticalException(e.message);
+                this.server.state.noteConnectionFailedTime(error.message);
+                throw new ServerCriticalException(error.message);
             } else {
                 this.server.state.incrementServerFailureCounts();
-                this.server.state.noteConnectionFailedTime(e.message);
-                throw new ServerCriticalException(e.message);
+                this.server.state.noteConnectionFailedTime(error.message);
+                throw new ServerCriticalException(error.message);
             }
         }
     }

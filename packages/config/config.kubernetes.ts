@@ -70,7 +70,8 @@ export class KubernetesConfig implements IConfig, OnModuleInit {
                     },
                 });
         } catch (e) {
-            throw new ConfigSyncException(e.message, e.stack);
+            const error = e as Error
+            throw new ConfigSyncException(error.message, error.stack);
         }
     }
 

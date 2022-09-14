@@ -6,7 +6,7 @@ const logger = new Logger('Schedule');
 
 export class ScheduleWrapper {
     public async immediately(name: string, target: Promise<Function>) {
-        (await target).call(null).catch(e => logger.error(JOB_EXECUTE_ERROR(name), e));
+        (await target).call(null).catch((e) => logger.error(JOB_EXECUTE_ERROR(name), e));
         return target;
     }
 
@@ -15,7 +15,7 @@ export class ScheduleWrapper {
         let timer: NodeJS.Timeout;
 
         const targetRef = () => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise<void>(async (resolve, reject) => {
                 const wrapperRef = async () => {
                     try {
                         await (await target).call(null);

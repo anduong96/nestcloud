@@ -1,22 +1,19 @@
-import { TransportInstance } from 'winston';
-import * as winston from 'winston';
-import { ConsoleTransport, DailyRotateFile, FileTransport } from './interfaces/transport.interface';
-import { resolve } from 'path';
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
-import moment = require('moment');
+import { resolve } from 'path';
+import * as winston from 'winston';
+import { ConsoleTransport, DailyRotateFile, FileTransport } from './interfaces/transport.interface';
+import * as Transport from 'winston-transport';
 
 export class TransportBuilder {
     private readonly AVAILABLE_TRANSPORTS = ['console', 'file', 'dailyRotateFile'];
 
-    constructor(
-        private readonly basePath: string,
-    ) {
-    }
+    constructor(private readonly basePath: string) {}
 
-    public build(transports: (DailyRotateFile | ConsoleTransport | FileTransport)[]): TransportInstance[] {
-        const instances: TransportInstance[] = transports.filter(item => this.AVAILABLE_TRANSPORTS.includes(item.transport))
-            .map(item => {
+    public build(transports: (DailyRotateFile | ConsoleTransport | FileTransport)[]): Transport[] {
+        const instances: Transport[] = transports
+            .filter((item) => this.AVAILABLE_TRANSPORTS.includes(item.transport))
+            .map((item) => {
                 switch (item.transport) {
                     case 'file':
                         return this.buildFileTransportInstance(item as FileTransport);
@@ -50,35 +47,19 @@ export class TransportBuilder {
     }
 
     private buildConsoleTransportInstance(config: ConsoleTransport) {
-        return new winston.transports.Console({
-            colorize: config.colorize,
-            label: config.label,
-            timestamp: () =>
-                moment(new Date().getTime()).format(config.datePattern || 'YYYY-MM-DD h:mm:ss'),
-        });
+        return new winston.transports.Console();
     }
 
     private buildFileTransportInstance(config: FileTransport) {
         return new winston.transports.File({
-            name: config.name,
             level: config.level,
             filename: this.mkdirPath(config.filename),
             maxsize: config.maxSize,
-            label: config.label,
             maxFiles: config.maxFiles,
-            json: config.json,
             eol: config.eol,
             zippedArchive: config.zippedArchive,
             silent: config.silent,
-            colorize: config.colorize,
-            prettyPrint: config.prettyPrint,
-            logstash: config.logstash,
-            depth: config.depth,
             tailable: config.tailable,
-            maxRetries: config.maxRetries,
-            options: config.options,
-            timestamp: () =>
-                moment(new Date().getTime()).format(config.datePattern || 'YYYY-MM-DD h:mm:ss'),
         });
     }
 
@@ -94,10 +75,6 @@ export class TransportBuilder {
     }
 
     private buildDefaultTransport() {
-        return new winston.transports.Console({
-            colorize: true,
-            label: '',
-            timestamp: () => moment(new Date().getTime()).format('YYYY-MM-DD h:mm:ss'),
-        });
+        return new winston.transports.Console({});
     }
 }
