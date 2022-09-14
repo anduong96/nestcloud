@@ -1,6 +1,6 @@
 {
     "name": "@nestcloud2/boot",
-    "version": "0.8.5",
+    "version": "0.9.1-rc.0",
     "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
     "author": "Miaowing <i@zfeng.net>",
     "license": "MIT",
@@ -16,7 +16,6 @@
     },
     "homepage": "https://github.com/nest-cloud/nestcloud#readme",
     "dependencies": {
-        "handlebars": "^4.1.1",
         "lodash": "^4.17.11",
         "reflect-metadata": "^0.1.12",
         "yamljs": "^0.3.0"

@@ -10,9 +10,7 @@ import { BootOptions } from './interfaces/boot-options.interface';
 export class BootFileLoader {
     private readonly files: string[];
 
-    constructor(
-        @Inject(BOOT_OPTIONS_PROVIDER) private readonly options: BootOptions,
-    ) {
+    constructor(@Inject(BOOT_OPTIONS_PROVIDER) private readonly options: BootOptions) {
         this.files = this.getFilesPath();
     }
 
@@ -27,17 +25,21 @@ export class BootFileLoader {
 
     private checkFileExists() {
         if (this.files.length === 0) {
-            throw new Error(`file ${path} was not found`);
+            throw new Error(`No files provided`);
         }
 
         let existFiles: number = 0;
+        const missingFiles: string[] = [];
         for (let i = 0; i < this.files.length; i++) {
             if (fs.existsSync(this.files[i])) {
                 existFiles++;
+            } else {
+                missingFiles.push(this.files[i]);
             }
         }
-        if (existFiles === 0) {
-            throw new Error(`file ${path} was not found`);
+
+        if (missingFiles.length > 0) {
+            throw new Error(`files ${missingFiles.join(', ')} was not found`);
         }
     }
 
@@ -72,10 +74,7 @@ export class BootFileLoader {
                 path.resolve(dirname, `${tokens[1]}.${env}.${tokens[0]}`),
             );
         } else {
-            filenames.push(
-                path.resolve(dirname, filename),
-                path.resolve(dirname, `${filename}.${env}`),
-            );
+            filenames.push(path.resolve(dirname, filename), path.resolve(dirname, `${filename}.${env}`));
         }
 
         return filenames;

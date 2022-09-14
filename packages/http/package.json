@@ -1,6 +1,6 @@
 {
     "name": "@nestcloud2/http",
-    "version": "0.9.0",
+    "version": "0.9.1-rc.0",
     "description": "NestCloud is a Node.js micro-service solution, writing by Typescript language and Nest.js.",
     "author": "Miaowing <i@zfeng.net>",
     "license": "MIT",
@@ -18,7 +18,6 @@
     "dependencies": {
         "lodash": "^4.17.11",
         "reflect-metadata": "^0.1.12",
-        "uri-params": "^0.1.3",
-        "uuid": "^3.3.2"
+        "uri-params": "^0.1.3"
     }
 }
